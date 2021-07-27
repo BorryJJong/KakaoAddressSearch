@@ -13,9 +13,11 @@
 		61306DBF26B0188200982447 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61306DBD26B0188200982447 /* Main.storyboard */; };
 		61306DC126B0188400982447 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC026B0188400982447 /* Assets.xcassets */; };
 		61306DC426B0188400982447 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC226B0188400982447 /* LaunchScreen.storyboard */; };
+		FB540650C3F15E632FE251FE /* Pods_Address_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11E21C4FDF3AA116F505F50A /* Pods-Address-Finder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Address-Finder.release.xcconfig"; path = "Target Support Files/Pods-Address-Finder/Pods-Address-Finder.release.xcconfig"; sourceTree = "<group>"; };
 		61306DB426B0188200982447 /* Address-Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Address-Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		61306DB726B0188200982447 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61306DB926B0188200982447 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		61306DC026B0188400982447 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61306DC326B0188400982447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61306DC526B0188400982447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Address-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Address-Finder/Pods-Address-Finder.debug.xcconfig"; sourceTree = "<group>"; };
+		DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Address_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB540650C3F15E632FE251FE /* Pods_Address_Finder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				61306DB626B0188200982447 /* Address-Finder */,
 				61306DB526B0188200982447 /* Products */,
+				8B889FCF667CDDF310F98A45 /* Pods */,
+				9ACC1494DD9F8AAE2E29FB47 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,24 @@
 			path = "Address-Finder";
 			sourceTree = "<group>";
 		};
+		8B889FCF667CDDF310F98A45 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */,
+				11E21C4FDF3AA116F505F50A /* Pods-Address-Finder.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9ACC1494DD9F8AAE2E29FB47 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61306DC826B0188400982447 /* Build configuration list for PBXNativeTarget "Address-Finder" */;
 			buildPhases = (
+				370A8293E5DCE252ED80BAF4 /* [CP] Check Pods Manifest.lock */,
 				61306DB026B0188200982447 /* Sources */,
 				61306DB126B0188200982447 /* Frameworks */,
 				61306DB226B0188200982447 /* Resources */,
+				4C779BCEAFD2FCCB4D560B51 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		370A8293E5DCE252ED80BAF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Address-Finder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4C779BCEAFD2FCCB4D560B51 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Address-Finder/Pods-Address-Finder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Address-Finder/Pods-Address-Finder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Address-Finder/Pods-Address-Finder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		61306DB026B0188200982447 /* Sources */ = {
@@ -283,6 +352,7 @@
 		};
 		61306DC926B0188400982447 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +372,7 @@
 		};
 		61306DCA26B0188400982447 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11E21C4FDF3AA116F505F50A /* Pods-Address-Finder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
