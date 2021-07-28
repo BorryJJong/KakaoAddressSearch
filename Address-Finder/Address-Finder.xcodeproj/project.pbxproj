@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		61306DBF26B0188200982447 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61306DBD26B0188200982447 /* Main.storyboard */; };
 		61306DC126B0188400982447 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC026B0188400982447 /* Assets.xcassets */; };
 		61306DC426B0188400982447 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC226B0188400982447 /* LaunchScreen.storyboard */; };
+		61306DCC26B172AF00982447 /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DCB26B172AF00982447 /* SearchAddressViewController.swift */; };
 		FB540650C3F15E632FE251FE /* Pods_Address_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		61306DC026B0188400982447 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61306DC326B0188400982447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61306DC526B0188400982447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61306DCB26B172AF00982447 /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
 		CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Address-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Address-Finder/Pods-Address-Finder.debug.xcconfig"; sourceTree = "<group>"; };
 		DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Address_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -66,6 +68,7 @@
 				61306DB726B0188200982447 /* AppDelegate.swift */,
 				61306DB926B0188200982447 /* SceneDelegate.swift */,
 				61306DBB26B0188200982447 /* ViewController.swift */,
+				61306DCB26B172AF00982447 /* SearchAddressViewController.swift */,
 				61306DBD26B0188200982447 /* Main.storyboard */,
 				61306DC026B0188400982447 /* Assets.xcassets */,
 				61306DC226B0188400982447 /* LaunchScreen.storyboard */,
@@ -80,7 +83,6 @@
 				CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */,
 				11E21C4FDF3AA116F505F50A /* Pods-Address-Finder.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61306DBC26B0188200982447 /* ViewController.swift in Sources */,
+				61306DCC26B172AF00982447 /* SearchAddressViewController.swift in Sources */,
 				61306DB826B0188200982447 /* AppDelegate.swift in Sources */,
 				61306DBA26B0188200982447 /* SceneDelegate.swift in Sources */,
 			);
