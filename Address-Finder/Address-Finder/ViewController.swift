@@ -24,36 +24,50 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewSet()
+        layout()
+    }
+    
+    func viewSet(){
+        
         view.backgroundColor = .white
         
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "주소 검색"
-    
+
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 30))
         let textField = UITextField(frame: header.bounds)
         textField.placeholder = "Search Address"
 
         header.backgroundColor = .systemGray
-        header.addSubview(textField)
         
         resultTableView = UITableView()
         resultTableView.tableHeaderView = header
         
         resultTableView.delegate = self
         resultTableView.dataSource = self
+        resultTableView.register(resultTableCell.classForCoder(), forCellReuseIdentifier: "cell")
+
+        header.addSubview(textField)
         view.addSubview(resultTableView)
 
-        resultTableView.register(resultTableCell.classForCoder(), forCellReuseIdentifier: "cell")
+    }
+    
+    func layout(){
         
         resultTableView.translatesAutoresizingMaskIntoConstraints = false
-
         resultTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
         resultTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
         resultTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         resultTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
     }
     
+    
 }
+
+
+
+
 
 extension ViewController: UITableViewDataSource{
     
