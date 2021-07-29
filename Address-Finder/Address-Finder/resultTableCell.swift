@@ -37,13 +37,11 @@ class resultTableCell : UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        //setup()
     }
     
     private func setup(){
         streetNameLabel.textColor = .black
         streetNumberLabel.textColor = .black
         shopNameLabel.textColor = .black
-        
     }
 }
