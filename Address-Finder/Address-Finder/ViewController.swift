@@ -17,7 +17,7 @@ public struct Address{
     let depthThreeAddress: String
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController {
     
     var resultTableView: UITableView!
     var resultList = ["1","2","3","4","5"]
@@ -53,10 +53,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         resultTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
     }
     
+}
+
+extension ViewController: UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return resultList.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! resultTableCell
@@ -66,52 +70,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height / 10
     }
-
+    
 }
 
-class resultTableCell : UITableViewCell {
-    public var streetNameLabel = UILabel()
-    public var streetNumberLabel = UILabel()
-    public var shopNameLabel = UILabel()
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //setup()
-        
-        contentView.addSubview(streetNameLabel)
-        contentView.addSubview(streetNumberLabel)
-        contentView.addSubview(shopNameLabel)
-        streetNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        streetNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        shopNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        streetNameLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        streetNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        
-        streetNumberLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        streetNumberLabel.topAnchor.constraint(equalTo: streetNameLabel.bottomAnchor, constant: 10).isActive = true
-        
-        shopNameLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        shopNameLabel.topAnchor.constraint(equalTo: streetNumberLabel.bottomAnchor, constant: 10).isActive = true
-        
-    }
+extension ViewController: UITableViewDelegate{
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        //setup()
-    }
-    
-    private func setup(){
-        streetNameLabel.textColor = .black
-        streetNumberLabel.textColor = .black
-        shopNameLabel.textColor = .black
-        
-    }
 }
-
-
 
