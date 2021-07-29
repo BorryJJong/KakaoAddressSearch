@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         resultTableView = UITableView()
         resultTableView.tableHeaderView = header
         //resultTableView.separatorInset.right = resultTableView.separatorInset.left
-        //resultTableView.delegate = self
+        resultTableView.delegate = self
         resultTableView.dataSource = self
         resultTableView.register(resultTableCell.classForCoder(), forCellReuseIdentifier: "cell")
 
@@ -120,9 +120,9 @@ extension ViewController: UITableViewDataSource{
 
 }
 
-//extension ViewController: UITableViewDelegate{
-//
-//}
+extension ViewController: UITableViewDelegate{
+
+}
 
 extension ViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
