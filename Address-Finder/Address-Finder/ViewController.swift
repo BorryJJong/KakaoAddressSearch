@@ -8,15 +8,6 @@
 import UIKit
 import Alamofire
 
-public struct Address{
-    let shopName: String
-    let streetName: String
-    let streetNumber: String
-    let depthOneAddress: String
-    let depthTwoAddress: String
-    let depthThreeAddress: String
-}
-
 class ViewController: UIViewController {
     
     var resultTableView: UITableView!
