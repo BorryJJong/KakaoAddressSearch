@@ -8,9 +8,12 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
+    
+    var searchButton = UIButton()
     var resultTableView: UITableView!
     var resultList = ["1","2","3","4","5"]
+    //var textField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +32,13 @@ class ViewController: UIViewController {
         textField.placeholder = "Search Address"
         textField.leftViewMode = .always
         textField.clearButtonMode = .whileEditing
-        textField.keyboardAppearance = .default
-        textField.keyboardType = .default
+        
+        searchButton.setImage(UIImage(named: "search.svg"), for: .normal)
+        searchButton.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+        searchButton.addTarget(self, action: #selector(self.didSearchButtonClicked), for: .touchUpInside)
+        textField.rightView = searchButton
+        textField.rightViewMode = UITextField.ViewMode.always
+        textField.delegate = self
         
         header.backgroundColor = .systemGray
         
@@ -41,6 +49,7 @@ class ViewController: UIViewController {
         resultTableView.register(resultTableCell.classForCoder(), forCellReuseIdentifier: "cell")
 
         header.addSubview(textField)
+        header.addSubview(searchButton)
         view.addSubview(resultTableView)
     }
     
@@ -51,6 +60,11 @@ class ViewController: UIViewController {
         resultTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         resultTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
     }
+
+    @objc func didSearchButtonClicked(){
+        print("test")
+    }
+    
 }
 
 extension ViewController: UITableViewDataSource{
@@ -72,16 +86,12 @@ extension ViewController: UITableViewDataSource{
         return view.frame.height / 10
     }
     
-    func doSearchAddress(keyword: String, page: Int){
-        let headers: HTTPHeaders = [
-            "Authorization": "KakaoAK [REST API KEY]"
-        ]
-        let parameters: [String: Any] = [
-            "query": keyword,
-            "page": page,
-            "size": 20
-        ]
+    func doSearchAddress(keyword: String){
+        let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
+        let parameters: [String: Any] = [ "query": keyword ]
+        
         Alamofire.request("https://dapi.kakao.com/v2/local/search/address.json", method: .get, parameters: parameters, headers: headers)
+        
         
     }
     
@@ -91,8 +101,11 @@ extension ViewController: UITableViewDelegate{
     
 }
 
-extension ViewController: UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
-    }
-}
+//extension ViewController: UITextFieldDelegate{
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//
+//        let keyword = textField.text!
+//        doSearchAddress(keyword: keyword)
+//        return true
+//    }
+//}
