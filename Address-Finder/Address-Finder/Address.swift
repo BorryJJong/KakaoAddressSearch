@@ -8,10 +8,10 @@
 import Foundation
 
 public struct Address{
-    let shopName: String
-    let streetName: String
-    let streetNumber: String
-    let depthOneAddress: String
-    let depthTwoAddress: String
-    let depthThreeAddress: String
+    let roadAddress: String
+    let jibunAddress: String
+//    let streetNumber: String
+//    let depthOneAddress: String
+//    let depthTwoAddress: String
+//    let depthThreeAddress: String
 }

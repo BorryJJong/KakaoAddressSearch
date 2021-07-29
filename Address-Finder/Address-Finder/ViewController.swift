@@ -7,18 +7,20 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
     
     var searchButton = UIButton()
     var resultTableView: UITableView!
-    var resultList = ["1","2","3","4","5"]
+    var resultList: [Address] = []
     //var textField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewSet()
         layout()
+        hideKeyboard()
     }
     
     func viewSet(){
@@ -28,7 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.navigationItem.title = "주소 검색"
 
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 40))
-        let textField = UITextField(frame: header.bounds)
+        let textField = UITextField(frame: CGRect(x: 20, y: 0, width: view.frame.size.width - 40, height: 40))
         textField.placeholder = "Search Address"
         textField.leftViewMode = .always
         textField.clearButtonMode = .whileEditing
@@ -39,12 +41,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textField.rightView = searchButton
         textField.rightViewMode = UITextField.ViewMode.always
         textField.delegate = self
-        
-        header.backgroundColor = .systemGray
+        textField.borderStyle = .roundedRect
         
         resultTableView = UITableView()
         resultTableView.tableHeaderView = header
-        resultTableView.delegate = self
+        //resultTableView.separatorInset.right = resultTableView.separatorInset.left
+        //resultTableView.delegate = self
         resultTableView.dataSource = self
         resultTableView.register(resultTableCell.classForCoder(), forCellReuseIdentifier: "cell")
 
@@ -60,11 +62,40 @@ class ViewController: UIViewController, UITextFieldDelegate {
         resultTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         resultTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
     }
-
+    
     @objc func didSearchButtonClicked(){
+        let text = "서울대학로 100"
+        
         print("test")
+        doSearchAddress(keyword: text)
     }
     
+    func doSearchAddress(keyword: String){
+        //var result = [Address]()
+        let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
+        let parameters: [String: Any] = [ "query": keyword ]
+        
+        Alamofire.request("https://dapi.kakao.com/v2/local/search/address.json",
+                          method: .get,
+                          parameters: parameters,
+                          headers: headers)
+            .responseJSON(completionHandler: { response in
+                debugPrint(response)
+                switch response.result {
+                case .success(let value):
+                    if let addressList = JSON(value)["documents"].array {
+                        for item in addressList{
+                            let streetAddr = item["address_name"].string ?? ""
+                            let jibunAddr = item["address_type"].string ?? ""
+                            self.resultList.append(Address(roadAddress: streetAddr, jibunAddress: jibunAddr))
+                        }
+                    }
+                    self.resultTableView.reloadData()
+                case .failure(_):
+                    debugPrint(Error.self)
+                }
+        })
+    }
 }
 
 extension ViewController: UITableViewDataSource{
@@ -76,8 +107,8 @@ extension ViewController: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! resultTableCell
     
-        cell.streetNameLabel.text = resultList[indexPath.row]
-        cell.streetNumberLabel.text = resultList[indexPath.row]
+        cell.roadAddressLabel.text = resultList[indexPath.row].roadAddress
+        cell.jibunAddressLabel.text = resultList[indexPath.row].jibunAddress
         
         return cell
     }
@@ -86,26 +117,31 @@ extension ViewController: UITableViewDataSource{
         return view.frame.height / 10
     }
     
-    func doSearchAddress(keyword: String){
-        let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
-        let parameters: [String: Any] = [ "query": keyword ]
-        
-        Alamofire.request("https://dapi.kakao.com/v2/local/search/address.json", method: .get, parameters: parameters, headers: headers)
-        
-        
-    }
-    
+
 }
 
-extension ViewController: UITableViewDelegate{
-    
-}
-
-//extension ViewController: UITextFieldDelegate{
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//extension ViewController: UITableViewDelegate{
 //
-//        let keyword = textField.text!
-//        doSearchAddress(keyword: keyword)
-//        return true
-//    }
 //}
+
+extension ViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        let text = "정왕동"
+        doSearchAddress(keyword: text)
+        
+        return true
+    }
+}
+
+extension UIViewController {
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+

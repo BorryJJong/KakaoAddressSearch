@@ -9,29 +9,32 @@ import Foundation
 import UIKit
 
 class resultTableCell : UITableViewCell {
-    public var streetNameLabel = UILabel()
-    public var streetNumberLabel = UILabel()
-    public var shopNameLabel = UILabel()
+    var roadAddressLabel = UILabel()
+    var jibunAddressLabel = UILabel()
+//    public var shopNameLabel = UILabel()
 
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         //setup()
         
-        contentView.addSubview(streetNameLabel)
-        contentView.addSubview(streetNumberLabel)
-        contentView.addSubview(shopNameLabel)
-        streetNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        streetNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        shopNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(roadAddressLabel)
+        contentView.addSubview(jibunAddressLabel)
+        //contentView.addSubview(shopNameLabel)
+        roadAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        jibunAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        //shopNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        streetNameLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        streetNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        roadAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        roadAddressLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+        //roadAddressLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
         
-        streetNumberLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        streetNumberLabel.topAnchor.constraint(equalTo: streetNameLabel.bottomAnchor, constant: 10).isActive = true
+        jibunAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        jibunAddressLabel.topAnchor.constraint(equalTo: roadAddressLabel.bottomAnchor, constant: 5).isActive = true
+        //jibunAddressLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
         
-        shopNameLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        shopNameLabel.topAnchor.constraint(equalTo: streetNumberLabel.bottomAnchor, constant: 10).isActive = true
+//        shopNameLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+//        shopNameLabel.topAnchor.constraint(equalTo: streetNumberLabel.bottomAnchor, constant: 10).isActive = true
         
     }
     
@@ -40,8 +43,7 @@ class resultTableCell : UITableViewCell {
     }
     
     private func setup(){
-        streetNameLabel.textColor = .black
-        streetNumberLabel.textColor = .black
-        shopNameLabel.textColor = .black
+        roadAddressLabel.textColor = .black
+        jibunAddressLabel.textColor = .black
     }
 }
