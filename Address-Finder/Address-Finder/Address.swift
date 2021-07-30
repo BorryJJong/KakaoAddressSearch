@@ -7,21 +7,36 @@
 
 import Foundation
 
-struct APIResponse: Codable{
+struct APIResponse: Codable {
     let documents: [Documents]
 }
 
-struct Documents: Codable{
-    let address_name: String
-    let address_type: String
-    let address: Address
-    let road_address: RoadAddress
+struct Documents: Codable {
+    let addressName: String
+    let addressType: String
+    let address: Address?
+    let roadAddress: RoadAddress?
+    
+    enum CodingKeys : String, CodingKey {
+        case addressName = "address_name"
+        case addressType = "address_type"
+        case address
+        case roadAddress = "road_address"
+    }
 }
 
-struct Address: Codable{
-    let address_name: String
+struct Address: Codable {
+    let addressName: String
+    
+    enum CodingKeys : String, CodingKey {
+        case addressName = "address_name"
+    }
 }
 
 struct RoadAddress: Codable {
-    let address_name: String
+    let addressName: String
+    
+    enum CodingKeys : String, CodingKey {
+        case addressName = "address_name"
+    }
 }

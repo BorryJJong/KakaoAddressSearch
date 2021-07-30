@@ -132,8 +132,8 @@ extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddressTableCell
     
-        cell.roadAddressLabel.text = ("도로명: ") + resultList[indexPath.row].address.address_name
-        cell.jibunAddressLabel.text = ("지번: ") + resultList[indexPath.row].road_address.address_name
+        //cell.roadAddressLabel.text = ("도로명: ") + resultList[indexPath.row].address.address_name
+        //cell.jibunAddressLabel.text = ("지번: ") + resultList[indexPath.row].roadAddress.address_name
         print(resultList)
         return cell
     }
