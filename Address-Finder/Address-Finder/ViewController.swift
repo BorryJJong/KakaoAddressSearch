@@ -64,7 +64,7 @@ class ViewController: UIViewController {
     }
     
     @objc func didSearchButtonClicked(){
-        let text = "서울대학로 100"
+        let text = "판교역로 235"
         
         print("test")
         doSearchAddress(keyword: text)
@@ -85,8 +85,11 @@ class ViewController: UIViewController {
                 case .success(let value):
                     if let addressList = JSON(value)["documents"].array {
                         for item in addressList{
-                            let streetAddr = item["address_name"].string ?? ""
-                            let jibunAddr = item["address_type"].string ?? ""
+                            let streetAddr = item["road_address"]["address_name"].string ?? ""
+                            //let Addr = JSON(value)["address"]
+                            //let jibunAddr = item["zip_code"].string ?? ""
+                        
+                            let jibunAddr = item["address"]["address_name"].string ?? ""
                             self.resultList.append(Address(roadAddress: streetAddr, jibunAddress: jibunAddr))
                         }
                     }
@@ -107,8 +110,8 @@ extension ViewController: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! resultTableCell
     
-        cell.roadAddressLabel.text = resultList[indexPath.row].roadAddress
-        cell.jibunAddressLabel.text = resultList[indexPath.row].jibunAddress
+        cell.roadAddressLabel.text = ("도로명: ") + resultList[indexPath.row].roadAddress
+        cell.jibunAddressLabel.text = ("지번: ") + resultList[indexPath.row].jibunAddress
         
         return cell
     }
