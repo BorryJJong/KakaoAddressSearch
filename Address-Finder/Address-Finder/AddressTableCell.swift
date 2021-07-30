@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class resultTableCell : UITableViewCell {
+class AddressTableCell : UITableViewCell {
     var roadAddressLabel = UILabel()
     var jibunAddressLabel = UILabel()
 //    public var shopNameLabel = UILabel()
