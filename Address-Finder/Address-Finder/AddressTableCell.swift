@@ -14,36 +14,32 @@ class AddressTableCell : UITableViewCell {
 //    public var shopNameLabel = UILabel()
 
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //setup()
-        
-        contentView.addSubview(roadAddressLabel)
-        contentView.addSubview(jibunAddressLabel)
-        //contentView.addSubview(shopNameLabel)
-        roadAddressLabel.translatesAutoresizingMaskIntoConstraints = false
-        jibunAddressLabel.translatesAutoresizingMaskIntoConstraints = false
-        //shopNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        roadAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        roadAddressLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
-        //roadAddressLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
-        
-        jibunAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        jibunAddressLabel.topAnchor.constraint(equalTo: roadAddressLabel.bottomAnchor, constant: 5).isActive = true
-        //jibunAddressLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
-        
-//        shopNameLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-//        shopNameLabel.topAnchor.constraint(equalTo: streetNumberLabel.bottomAnchor, constant: 10).isActive = true
-        
+        viewSet()
+        layout()
+
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    private func setup(){
+    func viewSet(){
         roadAddressLabel.textColor = .black
         jibunAddressLabel.textColor = .black
+        contentView.addSubview(roadAddressLabel)
+        contentView.addSubview(jibunAddressLabel)
     }
+    func layout(){
+        roadAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        roadAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        roadAddressLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        
+        jibunAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        jibunAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        jibunAddressLabel.topAnchor.constraint(equalTo: roadAddressLabel.bottomAnchor, constant: 10).isActive = true
+        jibunAddressLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+    }
+    
 }
