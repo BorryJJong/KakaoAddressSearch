@@ -123,29 +123,25 @@ class ViewController: UIViewController {
 //    }
 }
 
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return resultList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddressTableCell
-        let roadAddress = checkNil(resultList[indexPath.row].roadAddress?.addressName)
-        let jibunAddress = checkNil(resultList[indexPath.row].address?.addressName)
+        let roadAddress = resultList[indexPath.row].roadAddress?.addressName ?? ""
+        let jibunAddress = resultList[indexPath.row].address?.addressName ?? ""
         
-        cell.roadAddressLabel.text = ("도로명: ") + roadAddress
-        cell.jibunAddressLabel.text = ("지번: ") + jibunAddress
-        //print(resultList)
+        cell.roadAddressLabel.text = "도로명: " + roadAddress
+        cell.jibunAddressLabel.text = "지번: " + jibunAddress
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height / 10
     }
-}
-
-extension ViewController: UITableViewDelegate {
-
 }
 
 extension ViewController: UITextFieldDelegate {
