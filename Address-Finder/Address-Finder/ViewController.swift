@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     var addressTableView: UITableView!
     var addressSearchTextField: UITextField!
     var resultList: [Documents] = []
-    //var textField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,33 +93,6 @@ class ViewController: UIViewController {
             }
         }
     }
-//SwiftyJSON
-//        let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
-//        let parameters: [String: Any] = [ "query": keyword ]
-//        Alamofire.request("https://dapi.kakao.com/v2/local/search/address.json",
-//                          method: .get,
-//                          parameters: parameters,
-//                          headers: headers)
-//            .responseJSON(completionHandler: { response in
-//                debugPrint(response)
-//                switch response.result {
-//                case .success(let value):
-//                    if let addressList = JSON(value)["documents"].array {
-//                        for item in addressList{
-//                            let streetAddr = item["road_address"]["address_name"].string ?? ""
-//                            //let Addr = JSON(value)["address"]
-//                            //let jibunAddr = item["zip_code"].string ?? ""
-//
-//                            let jibunAddr = item["address"]["address_name"].string ?? ""
-//                            self.resultList.append(Address(roadAddress: streetAddr, jibunAddress: jibunAddr))
-//                        }
-//                    }
-//                    self.resultTableView.reloadData()
-//                case .failure(_):
-//                    debugPrint(Error.self)
-//                }
-//        })
-//    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -135,7 +107,7 @@ extension ViewController: UITableViewDataSource {
         
         cell.roadAddressLabel.text = ("도로명: ") + roadAddress
         cell.jibunAddressLabel.text = ("지번: ") + jibunAddress
-        //print(resultList)
+
         return cell
     }
     
@@ -151,6 +123,7 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         doSearchAddress(keyword: checkNil(textField.text))
+
         return true
     }
 }
@@ -167,7 +140,6 @@ extension UIViewController {
 }
 
 func checkNil(_ text: String?) -> String{
-    
     if text == nil {
         return " "
     }

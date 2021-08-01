@@ -11,27 +11,25 @@ import UIKit
 class AddressTableCell : UITableViewCell {
     var roadAddressLabel = UILabel()
     var jibunAddressLabel = UILabel()
-//    public var shopNameLabel = UILabel()
-
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         viewSet()
         layout()
-
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    func viewSet(){
+    func viewSet() {
         roadAddressLabel.textColor = .black
         jibunAddressLabel.textColor = .black
         contentView.addSubview(roadAddressLabel)
         contentView.addSubview(jibunAddressLabel)
     }
-    func layout(){
+    
+    func layout() {
         roadAddressLabel.translatesAutoresizingMaskIntoConstraints = false
         roadAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
         roadAddressLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
@@ -41,5 +39,4 @@ class AddressTableCell : UITableViewCell {
         jibunAddressLabel.topAnchor.constraint(equalTo: roadAddressLabel.bottomAnchor, constant: 10).isActive = true
         jibunAddressLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
     }
-    
 }
