@@ -5,15 +5,14 @@
 //  Created by Daye on 2021/07/29.
 //
 
-import Foundation
 import UIKit
 
 class AddressTableCell : UITableViewCell {
     var roadAddressLabel = UILabel()
-    var jibunAddressLabel = UILabel()
+    var jibeonAddressLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
         viewSet()
         layout()
     }
@@ -24,9 +23,9 @@ class AddressTableCell : UITableViewCell {
     
     func viewSet() {
         roadAddressLabel.textColor = .black
-        jibunAddressLabel.textColor = .black
+        jibeonAddressLabel.textColor = .black
         contentView.addSubview(roadAddressLabel)
-        contentView.addSubview(jibunAddressLabel)
+        contentView.addSubview(jibeonAddressLabel)
     }
     
     func layout() {
@@ -34,9 +33,9 @@ class AddressTableCell : UITableViewCell {
         roadAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
         roadAddressLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         
-        jibunAddressLabel.translatesAutoresizingMaskIntoConstraints = false
-        jibunAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        jibunAddressLabel.topAnchor.constraint(equalTo: roadAddressLabel.bottomAnchor, constant: 10).isActive = true
-        jibunAddressLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+        jibeonAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        jibeonAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        jibeonAddressLabel.topAnchor.constraint(equalTo: roadAddressLabel.bottomAnchor, constant: 10).isActive = true
+        jibeonAddressLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
     }
 }

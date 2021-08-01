@@ -7,13 +7,12 @@
 
 import UIKit
 import Alamofire
-//import SwiftyJSON
 
 class ViewController: UIViewController {
     
     var addressSearchButton = UIButton()
-    var addressTableView: UITableView!
-    var addressSearchTextField: UITextField!
+    var addressTableView = UITableView()
+    var addressSearchTextField = UITextField()
     var resultList: [Documents] = []
     
     override func viewDidLoad() {
@@ -64,8 +63,11 @@ class ViewController: UIViewController {
     }
     
     @objc func didSearchButtonClicked() {
-        let keyword = checkNil(addressSearchTextField.text)
-        doSearchAddress(keyword: keyword)
+        if let keyword = addressSearchTextField.text {
+            doSearchAddress(keyword: keyword)
+        } else {
+            doSearchAddress(keyword: " ")
+        }
     }
     
     func doSearchAddress(keyword: String) {
@@ -101,14 +103,23 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddressTableCell
-        let roadAddress = checkNil(resultList[indexPath.row].roadAddress?.addressName)
-        let jibunAddress = checkNil(resultList[indexPath.row].address?.addressName)
-        
-        cell.roadAddressLabel.text = ("도로명: ") + roadAddress
-        cell.jibunAddressLabel.text = ("지번: ") + jibunAddress
+        let addressTableCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddressTableCell
 
-        return cell
+        if let roadAddress = resultList[indexPath.row].roadAddress?.addressName {
+            addressTableCell.roadAddressLabel.text = ("도로명: ") + roadAddress
+        }
+        else {
+            addressTableCell.roadAddressLabel.text = ("도로명: ")
+        }
+
+        if let jibeonAddress = resultList[indexPath.row].address?.addressName {
+            addressTableCell.jibeonAddressLabel.text = ("지번: ") + jibeonAddress
+        }
+        else {
+            addressTableCell.roadAddressLabel.text = ("지번: ")
+        }
+        
+        return addressTableCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -122,26 +133,21 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        doSearchAddress(keyword: checkNil(textField.text))
-
+        if let keyword = addressSearchTextField.text {
+            doSearchAddress(keyword: keyword)
+        } else {
+            doSearchAddress(keyword: " ")
+        }
         return true
     }
 }
 
 extension UIViewController {
     func hideKeyboard(){
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-            action: #selector(UIViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-}
-
-func checkNil(_ text: String?) -> String{
-    if text == nil {
-        return " "
-    }
-    return text!
 }
