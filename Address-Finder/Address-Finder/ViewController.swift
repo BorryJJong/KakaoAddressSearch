@@ -128,12 +128,11 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController: UITableViewDelegate {
-
 }
 
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let keyword = addressSearchTextField.text {
+        if let keyword = textField.text {
             doSearchAddress(keyword: keyword)
         } else {
             doSearchAddress(keyword: " ")
