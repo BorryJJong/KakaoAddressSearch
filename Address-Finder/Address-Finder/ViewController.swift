@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     var addressTableView = UITableView()
     var addressSearchTextField = UITextField()
     var resultList: [Documents] = []
+    var backgroundImageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +26,11 @@ class ViewController: UIViewController {
     func viewSet() {
         view.backgroundColor = .white
         
+        backgroundImageView.image = UIImage(named: "map.svg")
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "주소 검색"
-
-        let addressTableHeader = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 40))
-        addressSearchTextField = UITextField(frame: CGRect(x: 20, y: 0, width: view.frame.size.width - 40, height: 40))
+        
         addressSearchTextField.placeholder = "Search Address"
         addressSearchTextField.leftViewMode = .always
         addressSearchTextField.clearButtonMode = .whileEditing
@@ -40,23 +41,35 @@ class ViewController: UIViewController {
         addressSearchTextField.rightView = addressSearchButton
         addressSearchTextField.rightViewMode = UITextField.ViewMode.always
         addressSearchTextField.delegate = self
-        addressSearchTextField.borderStyle = .none
+        addressSearchTextField.borderStyle = .roundedRect
         
         addressTableView = UITableView()
-        addressTableView.tableHeaderView = addressTableHeader
+        addressTableView.isHidden = true
+
         addressTableView.separatorInset.right = addressTableView.separatorInset.left
         addressTableView.delegate = self
         addressTableView.dataSource = self
         addressTableView.register(AddressTableCell.classForCoder(), forCellReuseIdentifier: "cell")
 
-        addressTableHeader.addSubview(addressSearchTextField)
-        addressTableHeader.addSubview(addressSearchButton)
+        view.addSubview(addressSearchTextField)
+        view.addSubview(backgroundImageView)
         view.addSubview(addressTableView)
     }
     
     func layout() {
+        addressSearchTextField.translatesAutoresizingMaskIntoConstraints = false
+        addressSearchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        addressSearchTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+        addressSearchTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        addressSearchTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+        addressSearchTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
+        
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        backgroundImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
         addressTableView.translatesAutoresizingMaskIntoConstraints = false
-        addressTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        addressTableView.topAnchor.constraint(equalTo: addressSearchTextField.bottomAnchor).isActive = true
         addressTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
         addressTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         addressTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -67,6 +80,7 @@ class ViewController: UIViewController {
             doSearchAddress(keyword: keyword)
         } else {
             doSearchAddress(keyword: " ")
+            //self.addressTableView.isHidden = true
         }
     }
     
@@ -81,6 +95,7 @@ class ViewController: UIViewController {
             switch response.result {
             case .success(let result):
                     do {
+                        self.addressTableView.isHidden = false
                         let jsonData = try JSONSerialization.data(withJSONObject: result, options: .prettyPrinted)
                         let getInstanceData = try JSONDecoder().decode(APIResponse.self, from: jsonData)
                         self.resultList = getInstanceData.documents
@@ -88,11 +103,14 @@ class ViewController: UIViewController {
                     }
                     catch {
                         print(error.localizedDescription)
+                        self.addressTableView.isHidden = true
+                        self.backgroundImageView.image = UIImage(named: "noResult.svg")
                     }
-                self.addressTableView.reloadData()
+                
             case .failure(let error):
                 print(error)
             }
+        self.addressTableView.reloadData()
         }
     }
 }
@@ -107,6 +125,7 @@ extension ViewController: UITableViewDataSource {
 
         if let roadAddress = resultList[indexPath.row].roadAddress?.addressName {
             addressTableCell.roadAddressLabel.text = ("도로명: ") + roadAddress
+            print(addressTableCell.roadAddressLabel.text)
         }
         else {
             addressTableCell.roadAddressLabel.text = ("도로명: ")
@@ -114,6 +133,7 @@ extension ViewController: UITableViewDataSource {
 
         if let jibeonAddress = resultList[indexPath.row].address?.addressName {
             addressTableCell.jibeonAddressLabel.text = ("지번: ") + jibeonAddress
+            print(addressTableCell.jibeonAddressLabel.text)
         }
         else {
             addressTableCell.roadAddressLabel.text = ("지번: ")
@@ -136,6 +156,8 @@ extension ViewController: UITextFieldDelegate {
             doSearchAddress(keyword: keyword)
         } else {
             doSearchAddress(keyword: " ")
+            //addressTableView.isHidden = true
+            //backgroundImageView.image = UIImage(named: "noResult.svg")
         }
         return true
     }
