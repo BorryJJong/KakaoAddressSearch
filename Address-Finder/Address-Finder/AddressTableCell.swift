@@ -22,8 +22,6 @@ class AddressTableCell : UITableViewCell {
     }
     
     func viewSet() {
-        roadAddressLabel.textColor = .black
-        jibeonAddressLabel.textColor = .black
         contentView.addSubview(roadAddressLabel)
         contentView.addSubview(jibeonAddressLabel)
     }
@@ -37,5 +35,10 @@ class AddressTableCell : UITableViewCell {
         jibeonAddressLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
         jibeonAddressLabel.topAnchor.constraint(equalTo: roadAddressLabel.bottomAnchor, constant: 10).isActive = true
         jibeonAddressLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+    }
+    
+    func setData(_ roadAddress: String, _ jibeonAddress: String){
+        roadAddressLabel.text = ("도로명: ") + roadAddress
+        jibeonAddressLabel.text = ("지번: ") + jibeonAddress
     }
 }

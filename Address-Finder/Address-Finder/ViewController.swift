@@ -80,7 +80,6 @@ class ViewController: UIViewController {
             doSearchAddress(keyword: keyword)
         } else {
             doSearchAddress(keyword: " ")
-            //self.addressTableView.isHidden = true
         }
     }
     
@@ -122,22 +121,11 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let addressTableCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddressTableCell
+        
+        let roadAddress = resultList[indexPath.row].roadAddress?.addressName ?? " "
+        let jibeonAddress = resultList[indexPath.row].address?.addressName ?? " "
 
-        if let roadAddress = resultList[indexPath.row].roadAddress?.addressName {
-            addressTableCell.roadAddressLabel.text = ("도로명: ") + roadAddress
-            print(addressTableCell.roadAddressLabel.text)
-        }
-        else {
-            addressTableCell.roadAddressLabel.text = ("도로명: ")
-        }
-
-        if let jibeonAddress = resultList[indexPath.row].address?.addressName {
-            addressTableCell.jibeonAddressLabel.text = ("지번: ") + jibeonAddress
-            print(addressTableCell.jibeonAddressLabel.text)
-        }
-        else {
-            addressTableCell.roadAddressLabel.text = ("지번: ")
-        }
+        addressTableCell.setData(roadAddress, jibeonAddress)
         
         return addressTableCell
     }
@@ -156,8 +144,6 @@ extension ViewController: UITextFieldDelegate {
             doSearchAddress(keyword: keyword)
         } else {
             doSearchAddress(keyword: " ")
-            //addressTableView.isHidden = true
-            //backgroundImageView.image = UIImage(named: "noResult.svg")
         }
         return true
     }
