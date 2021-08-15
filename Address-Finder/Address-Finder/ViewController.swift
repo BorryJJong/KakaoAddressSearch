@@ -69,6 +69,8 @@ class ViewController: UIViewController {
         backgroundImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         addressTableView.translatesAutoresizingMaskIntoConstraints = false
+//        addressTableView.rowHeight = UITableView.automaticDimension
+        addressTableView.estimatedRowHeight = 100
         addressTableView.topAnchor.constraint(equalTo: addressSearchTextField.bottomAnchor).isActive = true
         addressTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
         addressTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -87,16 +89,18 @@ class ViewController: UIViewController {
         let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
         let parameters: [String: Any] = [ "query": keyword ]
         
-        Alamofire.request("https://dapi.kakao.com/v2/local/search/address.json",
-                          method: .get,
-                          parameters: parameters,
-                          headers: headers).responseJSON{ (response) in
+        Alamofire.request(
+            "https://dapi.kakao.com/v2/local/search/address.json",
+            method: .get,
+            parameters: parameters,
+            headers: headers
+        ).responseData{ response in
             switch response.result {
             case .success(let result):
                     do {
                         self.addressTableView.isHidden = false
-                        let jsonData = try JSONSerialization.data(withJSONObject: result, options: .prettyPrinted)
-                        let getInstanceData = try JSONDecoder().decode(APIResponse.self, from: jsonData)
+                        //let jsonData = try JSONSerialization.data(withJSONObject: result, options: .prettyPrinted)
+                        let getInstanceData = try JSONDecoder().decode(APIResponse.self, from: result)
                         self.resultList = getInstanceData.documents
                         print(self.resultList)
                     }
@@ -125,13 +129,13 @@ extension ViewController: UITableViewDataSource {
         let roadAddress = resultList[indexPath.row].roadAddress?.addressName ?? " "
         let jibeonAddress = resultList[indexPath.row].address?.addressName ?? " "
 
-        addressTableCell.setData(roadAddress, jibeonAddress)
+        addressTableCell.setData(roadAddress: roadAddress, jibeonAddress: jibeonAddress)
         
         return addressTableCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 10
+        return UITableView.automaticDimension
     }
 }
 

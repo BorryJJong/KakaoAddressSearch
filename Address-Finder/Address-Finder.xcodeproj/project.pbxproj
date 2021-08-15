@@ -73,7 +73,7 @@
 		61306DB626B0188200982447 /* Address-Finder */ = {
 			isa = PBXGroup;
 			children = (
-				618C734726B6B61500A0F81B /* Structs */,
+				618C734726B6B61500A0F81B /* Entity */,
 				61306DB726B0188200982447 /* AppDelegate.swift */,
 				61306DB926B0188200982447 /* SceneDelegate.swift */,
 				61306DBB26B0188200982447 /* ViewController.swift */,
@@ -86,7 +86,7 @@
 			path = "Address-Finder";
 			sourceTree = "<group>";
 		};
-		618C734726B6B61500A0F81B /* Structs */ = {
+		618C734726B6B61500A0F81B /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				618C734526B6B60F00A0F81B /* Documents.swift */,
@@ -94,7 +94,7 @@
 				61306DCF26B2743400982447 /* Address.swift */,
 				618C734A26B6B64800A0F81B /* RoadAddress.swift */,
 			);
-			path = Structs;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		8B889FCF667CDDF310F98A45 /* Pods */ = {
