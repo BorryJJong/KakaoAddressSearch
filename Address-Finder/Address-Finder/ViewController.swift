@@ -69,7 +69,6 @@ class ViewController: UIViewController {
         backgroundImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         addressTableView.translatesAutoresizingMaskIntoConstraints = false
-//        addressTableView.rowHeight = UITableView.automaticDimension
         addressTableView.estimatedRowHeight = 100
         addressTableView.topAnchor.constraint(equalTo: addressSearchTextField.bottomAnchor).isActive = true
         addressTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
@@ -99,7 +98,6 @@ class ViewController: UIViewController {
             case .success(let result):
                     do {
                         self.addressTableView.isHidden = false
-                        //let jsonData = try JSONSerialization.data(withJSONObject: result, options: .prettyPrinted)
                         let getInstanceData = try JSONDecoder().decode(APIResponse.self, from: result)
                         self.resultList = getInstanceData.documents
                         print(self.resultList)
