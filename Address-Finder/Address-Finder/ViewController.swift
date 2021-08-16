@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     let addressTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorInset.right = tableView.separatorInset.left
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         return tableView
@@ -34,14 +35,17 @@ class ViewController: UIViewController {
         textField.borderStyle = .roundedRect
         return textField
     }()
-    let backgroundImageView : UIImageView = {
+    let searchStatusImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "map.svg")
         return imageView
     }()
-    let backgroudmessageLabel : UILabel = {
+    let searchStatusLabel : UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .gray
+        label.text = "검색어를 입력하세요"
         return label
     }()
     
@@ -63,14 +67,14 @@ class ViewController: UIViewController {
         addressSearchTextField.delegate = self
         
         addressTableView.isHidden = true
-        addressTableView.separatorInset.right = addressTableView.separatorInset.left
         addressTableView.delegate = self
         addressTableView.dataSource = self
         addressTableView.register(AddressTableCell.classForCoder(), forCellReuseIdentifier: "cell")
 
         view.addSubview(addressSearchTextField)
-        view.addSubview(backgroundImageView)
+        view.addSubview(searchStatusImageView)
         view.addSubview(addressTableView)
+        view.addSubview(searchStatusLabel)
     }
     
     private func layout() {
@@ -79,8 +83,11 @@ class ViewController: UIViewController {
         addressSearchTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
         addressSearchTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
 
-        backgroundImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        backgroundImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        searchStatusImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        searchStatusImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        searchStatusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        searchStatusLabel.topAnchor.constraint(equalTo: searchStatusImageView.bottomAnchor, constant: 20).isActive = true
         
         addressTableView.topAnchor.constraint(equalTo: addressSearchTextField.bottomAnchor).isActive = true
         addressTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
@@ -96,6 +103,25 @@ class ViewController: UIViewController {
         }
     }
     
+    func searchSuccess(data: APIResponse){
+        resultList = data.documents
+        
+        if resultList.isEmpty {
+            searchFail()
+        }else{
+            addressTableView.isHidden = false
+            
+        }
+        print(resultList)
+    }
+    
+    func searchFail(){
+        addressTableView.isHidden = true
+        searchStatusImageView.image = UIImage(named: "noResult.svg")
+        searchStatusLabel.text = "검색 결과가 없습니다"
+    }
+    
+    
     func doSearchAddress(keyword: String) {
         let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
         let parameters: [String: Any] = [ "query": keyword ]
@@ -109,15 +135,12 @@ class ViewController: UIViewController {
             switch response.result {
             case .success(let result):
                     do {
-                        self.addressTableView.isHidden = false
                         let getInstanceData = try JSONDecoder().decode(APIResponse.self, from: result)
-                        self.resultList = getInstanceData.documents
-                        print(self.resultList)
+                        self.searchSuccess(data: getInstanceData)
                     }
                     catch {
                         print(error.localizedDescription)
-                        self.addressTableView.isHidden = true
-                        self.backgroundImageView.image = UIImage(named: "noResult.svg")
+                        self.searchFail()
                     }
                 
             case .failure(let error):
@@ -143,10 +166,6 @@ extension ViewController: UITableViewDataSource {
         
         return addressTableCell
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
 }
 
 extension ViewController: UITableViewDelegate {

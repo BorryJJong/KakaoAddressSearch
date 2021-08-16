@@ -18,6 +18,7 @@
 		618C734626B6B60F00A0F81B /* Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734526B6B60F00A0F81B /* Documents.swift */; };
 		618C734926B6B63000A0F81B /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734826B6B63000A0F81B /* APIResponse.swift */; };
 		618C734B26B6B64800A0F81B /* RoadAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734A26B6B64800A0F81B /* RoadAddress.swift */; };
+		619D389326CA3AF7000BEB66 /* kakaoAddressSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D389226CA3AF7000BEB66 /* kakaoAddressSearch.swift */; };
 		FB540650C3F15E632FE251FE /* Pods_Address_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		618C734526B6B60F00A0F81B /* Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documents.swift; sourceTree = "<group>"; };
 		618C734826B6B63000A0F81B /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		618C734A26B6B64800A0F81B /* RoadAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadAddress.swift; sourceTree = "<group>"; };
+		619D389226CA3AF7000BEB66 /* kakaoAddressSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kakaoAddressSearch.swift; sourceTree = "<group>"; };
 		CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Address-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Address-Finder/Pods-Address-Finder.debug.xcconfig"; sourceTree = "<group>"; };
 		DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Address_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
 		61306DB626B0188200982447 /* Address-Finder */ = {
 			isa = PBXGroup;
 			children = (
+				619D389126CA3A9A000BEB66 /* API */,
 				618C734726B6B61500A0F81B /* Entity */,
 				61306DB726B0188200982447 /* AppDelegate.swift */,
 				61306DB926B0188200982447 /* SceneDelegate.swift */,
@@ -95,6 +98,14 @@
 				618C734A26B6B64800A0F81B /* RoadAddress.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		619D389126CA3A9A000BEB66 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				619D389226CA3AF7000BEB66 /* kakaoAddressSearch.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		8B889FCF667CDDF310F98A45 /* Pods */ = {
@@ -229,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				618C734B26B6B64800A0F81B /* RoadAddress.swift in Sources */,
+				619D389326CA3AF7000BEB66 /* kakaoAddressSearch.swift in Sources */,
 				618C734926B6B63000A0F81B /* APIResponse.swift in Sources */,
 				61306DCE26B26CA600982447 /* AddressTableCell.swift in Sources */,
 				61306DBC26B0188200982447 /* ViewController.swift in Sources */,
