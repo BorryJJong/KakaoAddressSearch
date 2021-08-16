@@ -9,43 +9,60 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController {
+    let addressSearchButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "search.svg"), for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+        button.addTarget(self, action: #selector(didSearchButtonClicked), for: .touchUpInside)
+        return button
+    }()
+    let addressTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        return tableView
+    }()
+    let addressSearchTextField : UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        textField.placeholder = "Search Address"
+        textField.leftViewMode = .always
+        textField.clearButtonMode = .whileEditing
+        textField.rightViewMode = UITextField.ViewMode.always
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+    let backgroundImageView : UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "map.svg")
+        return imageView
+    }()
+    let backgroudmessageLabel : UILabel = {
+        let label = UILabel()
+        return label
+    }()
     
-    var addressSearchButton = UIButton()
-    var addressTableView = UITableView()
-    var addressSearchTextField = UITextField()
     var resultList: [Documents] = []
-    var backgroundImageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewSet()
+        setView()
         layout()
         hideKeyboard()
     }
     
-    func viewSet() {
+    private func setView() {
         view.backgroundColor = .white
-        
-        backgroundImageView.image = UIImage(named: "map.svg")
-        
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "주소 검색"
-        
-        addressSearchTextField.placeholder = "Search Address"
-        addressSearchTextField.leftViewMode = .always
-        addressSearchTextField.clearButtonMode = .whileEditing
-        
-        addressSearchButton.setImage(UIImage(named: "search.svg"), for: .normal)
-        addressSearchButton.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
-        addressSearchButton.addTarget(self, action: #selector(self.didSearchButtonClicked), for: .touchUpInside)
-        addressSearchTextField.rightView = addressSearchButton
-        addressSearchTextField.rightViewMode = UITextField.ViewMode.always
-        addressSearchTextField.delegate = self
-        addressSearchTextField.borderStyle = .roundedRect
-        
-        addressTableView = UITableView()
-        addressTableView.isHidden = true
 
+        addressSearchTextField.rightView = addressSearchButton
+        addressSearchTextField.delegate = self
+        
+        addressTableView.isHidden = true
         addressTableView.separatorInset.right = addressTableView.separatorInset.left
         addressTableView.delegate = self
         addressTableView.dataSource = self
@@ -56,20 +73,15 @@ class ViewController: UIViewController {
         view.addSubview(addressTableView)
     }
     
-    func layout() {
-        addressSearchTextField.translatesAutoresizingMaskIntoConstraints = false
+    private func layout() {
         addressSearchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         addressSearchTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
-        addressSearchTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         addressSearchTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
         addressSearchTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
-        
-        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+
         backgroundImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         backgroundImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        addressTableView.translatesAutoresizingMaskIntoConstraints = false
-        addressTableView.estimatedRowHeight = 100
         addressTableView.topAnchor.constraint(equalTo: addressSearchTextField.bottomAnchor).isActive = true
         addressTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
         addressTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -132,9 +144,9 @@ extension ViewController: UITableViewDataSource {
         return addressTableCell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
 }
 
 extension ViewController: UITableViewDelegate {
