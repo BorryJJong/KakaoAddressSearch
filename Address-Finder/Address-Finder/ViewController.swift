@@ -48,6 +48,11 @@ class ViewController: UIViewController {
         label.text = "검색어를 입력하세요"
         return label
     }()
+    let searchLodingIndicator : UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        return activityIndicator
+    }()
     
     var resultList: [Documents] = []
     
@@ -73,8 +78,9 @@ class ViewController: UIViewController {
 
         view.addSubview(addressSearchTextField)
         view.addSubview(searchStatusImageView)
-        view.addSubview(addressTableView)
         view.addSubview(searchStatusLabel)
+        view.addSubview(addressTableView)
+        view.addSubview(searchLodingIndicator)
     }
     
     private func layout() {
@@ -88,6 +94,8 @@ class ViewController: UIViewController {
         
         searchStatusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         searchStatusLabel.topAnchor.constraint(equalTo: searchStatusImageView.bottomAnchor, constant: 20).isActive = true
+        
+        searchLodingIndicator.center = view.center
         
         addressTableView.topAnchor.constraint(equalTo: addressSearchTextField.bottomAnchor).isActive = true
         addressTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
@@ -106,6 +114,10 @@ class ViewController: UIViewController {
     func searchSuccess(data: APIResponse){
         resultList = data.documents
         
+        searchLodingIndicator.stopAnimating()
+        searchStatusImageView.isHidden = false
+        searchStatusLabel.isHidden = false
+        
         if resultList.isEmpty {
             searchFail()
         }else{
@@ -116,15 +128,21 @@ class ViewController: UIViewController {
     }
     
     func searchFail(){
-        addressTableView.isHidden = true
+        searchLodingIndicator.stopAnimating()
+        searchStatusImageView.isHidden = false
+        searchStatusLabel.isHidden = false
+        
         searchStatusImageView.image = UIImage(named: "noResult.svg")
         searchStatusLabel.text = "검색 결과가 없습니다"
     }
     
-    
     func doSearchAddress(keyword: String) {
         let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
         let parameters: [String: Any] = [ "query": keyword ]
+        
+        searchStatusImageView.isHidden = true
+        searchStatusLabel.isHidden = true
+        searchLodingIndicator.startAnimating()
         
         Alamofire.request(
             "https://dapi.kakao.com/v2/local/search/address.json",
