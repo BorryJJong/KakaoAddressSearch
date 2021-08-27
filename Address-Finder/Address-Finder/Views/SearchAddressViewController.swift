@@ -1,15 +1,28 @@
 //
 //  ViewController.swift
-//  Address-Finder
+//  Practice_MVC_AddressFinder
 //
-//  Created by Daye on 2021/07/27.
+//  Created by Daye on 2021/08/24.
 //
 
 import UIKit
-import Alamofire
 
-class ViewController: UIViewController {
-    let addressSearchButton: UIButton = {
+//protocol SearchAddressView {
+//    //func didSearchAddress()
+//    func reloadData()
+//}
+
+class SearchAddressViewController: UIViewController, SearchAddressPresenterDelegate{
+
+    func presentAddress(result: [Documents]) {
+        self.resultList = result
+        self.addressTableView.reloadData()
+    }
+
+    let presenter = SearchAddressPresenter()
+    var resultList: [Documents] = []
+    
+    let searchAddressButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "search.svg"), for: .normal)
         button.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
@@ -20,11 +33,10 @@ class ViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorInset.right = tableView.separatorInset.left
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.register(AddressTableCell.classForCoder(), forCellReuseIdentifier: "cell")
         return tableView
     }()
-    let addressSearchTextField : UITextField = {
+    let searchAddressTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.heightAnchor.constraint(equalToConstant: 40).isActive = true
@@ -54,10 +66,10 @@ class ViewController: UIViewController {
         return activityIndicator
     }()
     
-    var resultList: [Documents] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.setViewDelegate(delegate: self)
+
         setView()
         layout()
         hideKeyboard()
@@ -68,15 +80,14 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "주소 검색"
 
-        addressSearchTextField.rightView = addressSearchButton
-        addressSearchTextField.delegate = self
+        searchAddressTextField.rightView = searchAddressButton
+        searchAddressTextField.delegate = self
         
         addressTableView.isHidden = true
         addressTableView.delegate = self
         addressTableView.dataSource = self
-        addressTableView.register(AddressTableCell.classForCoder(), forCellReuseIdentifier: "cell")
-
-        view.addSubview(addressSearchTextField)
+        
+        view.addSubview(searchAddressTextField)
         view.addSubview(searchStatusImageView)
         view.addSubview(searchStatusLabel)
         view.addSubview(addressTableView)
@@ -84,10 +95,10 @@ class ViewController: UIViewController {
     }
     
     private func layout() {
-        addressSearchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        addressSearchTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
-        addressSearchTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-        addressSearchTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
+        searchAddressTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        searchAddressTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+        searchAddressTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+        searchAddressTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
 
         searchStatusImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         searchStatusImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -97,79 +108,70 @@ class ViewController: UIViewController {
         
         searchLodingIndicator.center = view.center
         
-        addressTableView.topAnchor.constraint(equalTo: addressSearchTextField.bottomAnchor).isActive = true
+        addressTableView.topAnchor.constraint(equalTo: searchAddressTextField.bottomAnchor).isActive = true
         addressTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
         addressTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         addressTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
     }
     
     @objc func didSearchButtonClicked() {
-        if let keyword = addressSearchTextField.text {
-            doSearchAddress(keyword: keyword)
-        } else {
-            doSearchAddress(keyword: " ")
+        addressTableView.isHidden = true
+        if let keyword = searchAddressTextField.text{
+            presenter.doSearchAddress(keyword: keyword)
+            if resultList.isEmpty{
+                startSearching(isSuccess: false)
+            }else{
+                startSearching(isSuccess: true)
+            }
+        } else{
+            presenter.doSearchAddress(keyword: " ")
+            startSearching(isSuccess: false)
         }
     }
     
-    func searchSuccess(data: APIResponse){
-        resultList = data.documents
-        
-        searchLodingIndicator.stopAnimating()
-        searchStatusImageView.isHidden = false
-        searchStatusLabel.isHidden = false
-        
-        if resultList.isEmpty {
-            searchFail()
-        }else{
-            addressTableView.isHidden = false
-            
-        }
-        print(resultList)
-    }
-    
-    func searchFail(){
-        searchLodingIndicator.stopAnimating()
-        searchStatusImageView.isHidden = false
-        searchStatusLabel.isHidden = false
-        
-        searchStatusImageView.image = UIImage(named: "noResult.svg")
-        searchStatusLabel.text = "검색 결과가 없습니다"
-    }
-    
-    func doSearchAddress(keyword: String) {
-        let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
-        let parameters: [String: Any] = [ "query": keyword ]
+    func startSearching(isSuccess: Bool){
+        let time = DispatchTime.now() + .seconds(3)
         
         searchStatusImageView.isHidden = true
         searchStatusLabel.isHidden = true
         searchLodingIndicator.startAnimating()
         
-        Alamofire.request(
-            "https://dapi.kakao.com/v2/local/search/address.json",
-            method: .get,
-            parameters: parameters,
-            headers: headers
-        ).responseData{ response in
-            switch response.result {
-            case .success(let result):
-                    do {
-                        let getInstanceData = try JSONDecoder().decode(APIResponse.self, from: result)
-                        self.searchSuccess(data: getInstanceData)
-                    }
-                    catch {
-                        print(error.localizedDescription)
-                        self.searchFail()
-                    }
-                
-            case .failure(let error):
-                print(error)
+        DispatchQueue.main.asyncAfter(deadline: time){
+            self.searchLodingIndicator.stopAnimating()
+            if(isSuccess){
+                self.showTable()
+            }else{
+                self.searchStatusImageView.image = UIImage(named: "noResult.svg")
+                self.searchStatusLabel.text = "검색 결과가 없습니다"
+                self.hideTable()
             }
-        self.addressTableView.reloadData()
         }
+    }
+    
+    func showTable(){
+        addressTableView.isHidden = false
+        searchStatusImageView.isHidden = true
+        searchStatusLabel.isHidden = true
+    }
+    
+    func hideTable(){
+        addressTableView.isHidden = true
+        searchStatusImageView.isHidden = false
+        searchStatusLabel.isHidden = false
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension UIViewController {
+    func hideKeyboard(){
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+extension SearchAddressViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return resultList.count
     }
@@ -186,26 +188,12 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension SearchAddressViewController: UITableViewDelegate {
 }
 
-extension ViewController: UITextFieldDelegate {
+extension SearchAddressViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let keyword = textField.text {
-            doSearchAddress(keyword: keyword)
-        } else {
-            doSearchAddress(keyword: " ")
-        }
+        presenter.doSearchAddress(keyword: textField.text ?? "" )
         return true
-    }
-}
-
-extension UIViewController {
-    func hideKeyboard(){
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }

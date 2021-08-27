@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		61306DB826B0188200982447 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DB726B0188200982447 /* AppDelegate.swift */; };
 		61306DBA26B0188200982447 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DB926B0188200982447 /* SceneDelegate.swift */; };
-		61306DBC26B0188200982447 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DBB26B0188200982447 /* ViewController.swift */; };
+		61306DBC26B0188200982447 /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DBB26B0188200982447 /* SearchAddressViewController.swift */; };
 		61306DBF26B0188200982447 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61306DBD26B0188200982447 /* Main.storyboard */; };
 		61306DC126B0188400982447 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC026B0188400982447 /* Assets.xcassets */; };
 		61306DC426B0188400982447 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC226B0188400982447 /* LaunchScreen.storyboard */; };
 		61306DCE26B26CA600982447 /* AddressTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DCD26B26CA600982447 /* AddressTableCell.swift */; };
 		61306DD026B2743400982447 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DCF26B2743400982447 /* Address.swift */; };
 		618C734626B6B60F00A0F81B /* Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734526B6B60F00A0F81B /* Documents.swift */; };
-		618C734926B6B63000A0F81B /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734826B6B63000A0F81B /* APIResponse.swift */; };
 		618C734B26B6B64800A0F81B /* RoadAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734A26B6B64800A0F81B /* RoadAddress.swift */; };
-		619D389326CA3AF7000BEB66 /* kakaoAddressSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D389226CA3AF7000BEB66 /* kakaoAddressSearch.swift */; };
+		619D38A026CB8A77000BEB66 /* AddressSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */; };
+		61BA939926D8F7F300544ADF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BA939826D8F7F300544ADF /* APIResponse.swift */; };
 		FB540650C3F15E632FE251FE /* Pods_Address_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +27,7 @@
 		61306DB426B0188200982447 /* Address-Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Address-Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		61306DB726B0188200982447 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61306DB926B0188200982447 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		61306DBB26B0188200982447 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		61306DBB26B0188200982447 /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
 		61306DBE26B0188200982447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		61306DC026B0188400982447 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61306DC326B0188400982447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -35,9 +35,9 @@
 		61306DCD26B26CA600982447 /* AddressTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableCell.swift; sourceTree = "<group>"; };
 		61306DCF26B2743400982447 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		618C734526B6B60F00A0F81B /* Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documents.swift; sourceTree = "<group>"; };
-		618C734826B6B63000A0F81B /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		618C734A26B6B64800A0F81B /* RoadAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadAddress.swift; sourceTree = "<group>"; };
-		619D389226CA3AF7000BEB66 /* kakaoAddressSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kakaoAddressSearch.swift; sourceTree = "<group>"; };
+		619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchPresenter.swift; sourceTree = "<group>"; };
+		61BA939826D8F7F300544ADF /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Address-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Address-Finder/Pods-Address-Finder.debug.xcconfig"; sourceTree = "<group>"; };
 		DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Address_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -75,16 +75,15 @@
 		61306DB626B0188200982447 /* Address-Finder */ = {
 			isa = PBXGroup;
 			children = (
-				619D389126CA3A9A000BEB66 /* API */,
+				619D389C26CB871D000BEB66 /* Views */,
+				619D389826CB52BF000BEB66 /* Presenters */,
 				618C734726B6B61500A0F81B /* Entity */,
 				61306DB726B0188200982447 /* AppDelegate.swift */,
 				61306DB926B0188200982447 /* SceneDelegate.swift */,
-				61306DBB26B0188200982447 /* ViewController.swift */,
 				61306DBD26B0188200982447 /* Main.storyboard */,
 				61306DC026B0188400982447 /* Assets.xcassets */,
 				61306DC226B0188400982447 /* LaunchScreen.storyboard */,
 				61306DC526B0188400982447 /* Info.plist */,
-				61306DCD26B26CA600982447 /* AddressTableCell.swift */,
 			);
 			path = "Address-Finder";
 			sourceTree = "<group>";
@@ -93,19 +92,28 @@
 			isa = PBXGroup;
 			children = (
 				618C734526B6B60F00A0F81B /* Documents.swift */,
-				618C734826B6B63000A0F81B /* APIResponse.swift */,
 				61306DCF26B2743400982447 /* Address.swift */,
 				618C734A26B6B64800A0F81B /* RoadAddress.swift */,
+				61BA939826D8F7F300544ADF /* APIResponse.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
 		};
-		619D389126CA3A9A000BEB66 /* API */ = {
+		619D389826CB52BF000BEB66 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				619D389226CA3AF7000BEB66 /* kakaoAddressSearch.swift */,
+				619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */,
 			);
-			path = API;
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		619D389C26CB871D000BEB66 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				61306DBB26B0188200982447 /* SearchAddressViewController.swift */,
+				61306DCD26B26CA600982447 /* AddressTableCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8B889FCF667CDDF310F98A45 /* Pods */ = {
@@ -240,14 +248,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				618C734B26B6B64800A0F81B /* RoadAddress.swift in Sources */,
-				619D389326CA3AF7000BEB66 /* kakaoAddressSearch.swift in Sources */,
-				618C734926B6B63000A0F81B /* APIResponse.swift in Sources */,
 				61306DCE26B26CA600982447 /* AddressTableCell.swift in Sources */,
-				61306DBC26B0188200982447 /* ViewController.swift in Sources */,
+				61306DBC26B0188200982447 /* SearchAddressViewController.swift in Sources */,
 				61306DB826B0188200982447 /* AppDelegate.swift in Sources */,
+				619D38A026CB8A77000BEB66 /* AddressSearchPresenter.swift in Sources */,
 				61306DD026B2743400982447 /* Address.swift in Sources */,
 				618C734626B6B60F00A0F81B /* Documents.swift in Sources */,
 				61306DBA26B0188200982447 /* SceneDelegate.swift in Sources */,
+				61BA939926D8F7F300544ADF /* APIResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
