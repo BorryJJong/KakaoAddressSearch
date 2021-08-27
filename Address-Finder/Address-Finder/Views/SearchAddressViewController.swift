@@ -116,31 +116,31 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     
     @objc func didSearchButtonClicked() {
         addressTableView.isHidden = true
-        if let keyword = searchAddressTextField.text{
+        if let keyword = searchAddressTextField.text {
             presenter.doSearchAddress(keyword: keyword)
-            if resultList.isEmpty{
+            if resultList.isEmpty {
                 startSearching(isSuccess: false)
-            }else{
+            } else {
                 startSearching(isSuccess: true)
             }
-        } else{
+        } else {
             presenter.doSearchAddress(keyword: " ")
             startSearching(isSuccess: false)
         }
     }
     
-    func startSearching(isSuccess: Bool){
+    func startSearching(isSuccess: Bool) {
         let time = DispatchTime.now() + .seconds(3)
         
         searchStatusImageView.isHidden = true
         searchStatusLabel.isHidden = true
         searchLodingIndicator.startAnimating()
         
-        DispatchQueue.main.asyncAfter(deadline: time){
+        DispatchQueue.main.asyncAfter(deadline: time) {
             self.searchLodingIndicator.stopAnimating()
-            if(isSuccess){
+            if(isSuccess) {
                 self.showTable()
-            }else{
+            } else {
                 self.searchStatusImageView.image = UIImage(named: "noResult.svg")
                 self.searchStatusLabel.text = "검색 결과가 없습니다"
                 self.hideTable()
@@ -148,13 +148,13 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
         }
     }
     
-    func showTable(){
+    func showTable() {
         addressTableView.isHidden = false
         searchStatusImageView.isHidden = true
         searchStatusLabel.isHidden = true
     }
     
-    func hideTable(){
+    func hideTable() {
         addressTableView.isHidden = true
         searchStatusImageView.isHidden = false
         searchStatusLabel.isHidden = false
@@ -162,7 +162,7 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
 }
 
 extension UIViewController {
-    func hideKeyboard(){
+    func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -193,7 +193,18 @@ extension SearchAddressViewController: UITableViewDelegate {
 
 extension SearchAddressViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        presenter.doSearchAddress(keyword: textField.text ?? "" )
+        addressTableView.isHidden = true
+        if let keyword = searchAddressTextField.text {
+            presenter.doSearchAddress(keyword: keyword)
+            if resultList.isEmpty {
+                startSearching(isSuccess: false)
+            } else {
+                startSearching(isSuccess: true)
+            }
+        } else {
+            presenter.doSearchAddress(keyword: " ")
+            startSearching(isSuccess: false)
+        }
         return true
     }
 }

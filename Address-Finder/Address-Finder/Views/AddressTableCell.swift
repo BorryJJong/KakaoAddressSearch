@@ -45,7 +45,7 @@ class AddressTableCell : UITableViewCell {
         jibeonAddressLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
     }
     
-    func setData(roadAddress: String, jibeonAddress: String){
+    func setData(roadAddress: String, jibeonAddress: String) {
         roadAddressLabel.text = ("도로명: ") + roadAddress
         jibeonAddressLabel.text = ("지번: ") + jibeonAddress
     }

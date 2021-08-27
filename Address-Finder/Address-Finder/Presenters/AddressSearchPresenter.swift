@@ -13,11 +13,10 @@ protocol SearchAddressPresenterDelegate: AnyObject{
     func presentAddress(result: [Documents])
 }
 
-class SearchAddressPresenter: SearchAddressPresenterDelegate{
+class SearchAddressPresenter: SearchAddressPresenterDelegate {
     var delegate: SearchAddressPresenterDelegate?
 
     func presentAddress(result: [Documents]) {
-        print("hello?")
     }
         
     func doSearchAddress(keyword: String) {
@@ -46,7 +45,7 @@ class SearchAddressPresenter: SearchAddressPresenterDelegate{
         }
     }
     
-    public func setViewDelegate(delegate: SearchAddressPresenterDelegate & UIViewController){
+    public func setViewDelegate(delegate: SearchAddressPresenterDelegate & UIViewController) {
         self.delegate = delegate
     }
 }
