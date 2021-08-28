@@ -6,29 +6,25 @@
 //
 
 import Foundation
-import UIKit
 import Alamofire
 
-protocol SearchAddressPresenterDelegate: AnyObject{
+protocol SearchAddressPresenterDelegate: AnyObject {
     func presentAddress(result: [Documents])
 }
 
-class SearchAddressPresenter: SearchAddressPresenterDelegate {
-    var delegate: SearchAddressPresenterDelegate?
-
-    func presentAddress(result: [Documents]) {
-    }
+class SearchAddressPresenter {
+    weak var delegate: SearchAddressPresenterDelegate?
         
     func doSearchAddress(keyword: String) {
         let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
         let parameters: [String: Any] = [ "query": keyword ]
         
         Alamofire.request(
-            "https://dapi.kakao.com/v2/local/search/address.json",
+            "https://dapi.kakao.com/v2/local/search/keyword.json",
             method: .get,
             parameters: parameters,
             headers: headers
-        ).responseData{ response in
+        ).responseData { response in
             switch response.result {
             case .success(let result):
                 do {
@@ -38,7 +34,6 @@ class SearchAddressPresenter: SearchAddressPresenterDelegate {
                 catch {
                     print(error.localizedDescription)
                 }
-                
             case .failure(let error):
                 print(error)
             }

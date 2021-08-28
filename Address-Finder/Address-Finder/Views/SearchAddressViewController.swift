@@ -7,13 +7,7 @@
 
 import UIKit
 
-//protocol SearchAddressView {
-//    //func didSearchAddress()
-//    func reloadData()
-//}
-
-class SearchAddressViewController: UIViewController, SearchAddressPresenterDelegate{
-
+class SearchAddressViewController: UIViewController, SearchAddressPresenterDelegate {
     func presentAddress(result: [Documents]) {
         self.resultList = result
         self.addressTableView.reloadData()
@@ -179,10 +173,11 @@ extension SearchAddressViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let addressTableCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddressTableCell
         
-        let roadAddress = resultList[indexPath.row].roadAddress?.addressName ?? " "
-        let jibeonAddress = resultList[indexPath.row].address?.addressName ?? " "
+        let placeName = resultList[indexPath.row].placeName
+        let roadAddress = resultList[indexPath.row].roadAddressName
+        let jibeonAddress = resultList[indexPath.row].addressName
 
-        addressTableCell.setData(roadAddress: roadAddress, jibeonAddress: jibeonAddress)
+        addressTableCell.setData(placeName: placeName, roadAddress: roadAddress, jibeonAddress: jibeonAddress)
         
         return addressTableCell
     }

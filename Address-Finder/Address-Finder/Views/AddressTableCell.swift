@@ -8,6 +8,12 @@
 import UIKit
 
 class AddressTableCell : UITableViewCell {
+    let placeNameLabel : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     let roadAddressLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -30,13 +36,18 @@ class AddressTableCell : UITableViewCell {
     }
     
     func setView() {
+        contentView.addSubview(placeNameLabel)
         contentView.addSubview(roadAddressLabel)
         contentView.addSubview(jibeonAddressLabel)
     }
     
     func layout() {
+        placeNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        placeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        placeNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10).isActive = true
+        
         roadAddressLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        roadAddressLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        roadAddressLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: 10).isActive = true
         roadAddressLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         
         jibeonAddressLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
@@ -45,7 +56,8 @@ class AddressTableCell : UITableViewCell {
         jibeonAddressLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
     }
     
-    func setData(roadAddress: String, jibeonAddress: String) {
+    func setData(placeName: String, roadAddress: String, jibeonAddress: String) {
+        placeNameLabel.text = placeName
         roadAddressLabel.text = ("도로명: ") + roadAddress
         jibeonAddressLabel.text = ("지번: ") + jibeonAddress
     }

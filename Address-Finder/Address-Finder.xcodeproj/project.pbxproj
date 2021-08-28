@@ -14,9 +14,7 @@
 		61306DC126B0188400982447 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC026B0188400982447 /* Assets.xcassets */; };
 		61306DC426B0188400982447 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC226B0188400982447 /* LaunchScreen.storyboard */; };
 		61306DCE26B26CA600982447 /* AddressTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DCD26B26CA600982447 /* AddressTableCell.swift */; };
-		61306DD026B2743400982447 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DCF26B2743400982447 /* Address.swift */; };
 		618C734626B6B60F00A0F81B /* Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734526B6B60F00A0F81B /* Documents.swift */; };
-		618C734B26B6B64800A0F81B /* RoadAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734A26B6B64800A0F81B /* RoadAddress.swift */; };
 		619D38A026CB8A77000BEB66 /* AddressSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */; };
 		61BA939926D8F7F300544ADF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BA939826D8F7F300544ADF /* APIResponse.swift */; };
 		FB540650C3F15E632FE251FE /* Pods_Address_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */; };
@@ -33,9 +31,7 @@
 		61306DC326B0188400982447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61306DC526B0188400982447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61306DCD26B26CA600982447 /* AddressTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableCell.swift; sourceTree = "<group>"; };
-		61306DCF26B2743400982447 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		618C734526B6B60F00A0F81B /* Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documents.swift; sourceTree = "<group>"; };
-		618C734A26B6B64800A0F81B /* RoadAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadAddress.swift; sourceTree = "<group>"; };
 		619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchPresenter.swift; sourceTree = "<group>"; };
 		61BA939826D8F7F300544ADF /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Address-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Address-Finder/Pods-Address-Finder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,13 +84,19 @@
 			path = "Address-Finder";
 			sourceTree = "<group>";
 		};
-		618C734726B6B61500A0F81B /* Entity */ = {
+		616B6E1026D9D10F00652A72 /* Address */ = {
 			isa = PBXGroup;
 			children = (
 				618C734526B6B60F00A0F81B /* Documents.swift */,
-				61306DCF26B2743400982447 /* Address.swift */,
-				618C734A26B6B64800A0F81B /* RoadAddress.swift */,
 				61BA939826D8F7F300544ADF /* APIResponse.swift */,
+			);
+			path = Address;
+			sourceTree = "<group>";
+		};
+		618C734726B6B61500A0F81B /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				616B6E1026D9D10F00652A72 /* Address */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -247,12 +249,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				618C734B26B6B64800A0F81B /* RoadAddress.swift in Sources */,
 				61306DCE26B26CA600982447 /* AddressTableCell.swift in Sources */,
 				61306DBC26B0188200982447 /* SearchAddressViewController.swift in Sources */,
 				61306DB826B0188200982447 /* AppDelegate.swift in Sources */,
 				619D38A026CB8A77000BEB66 /* AddressSearchPresenter.swift in Sources */,
-				61306DD026B2743400982447 /* Address.swift in Sources */,
 				618C734626B6B60F00A0F81B /* Documents.swift in Sources */,
 				61306DBA26B0188200982447 /* SceneDelegate.swift in Sources */,
 				61BA939926D8F7F300544ADF /* APIResponse.swift in Sources */,
