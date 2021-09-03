@@ -8,6 +8,6 @@
 import Foundation
 
 struct SelectedLocation {
-    var latitude: Double
-    var longitude: Double
+  var latitude: Double
+  var longitude: Double
 }

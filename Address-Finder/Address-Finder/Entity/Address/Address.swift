@@ -9,8 +9,8 @@ import Foundation
 
 struct Address: Codable {
     let addressName: String
-    
-    enum CodingKeys : String, CodingKey {
+
+    enum CodingKeys: String, CodingKey {
         case addressName = "address_name"
     }
 }

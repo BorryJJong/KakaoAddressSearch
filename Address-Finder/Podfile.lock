@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (4.9.1)
   - NMapsMap (3.13.0)
+  - SwiftLint (0.43.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - NMapsMap
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - NMapsMap
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 6d3540ff18728bce21e97da42c135daf8f7ee3ab
+PODFILE CHECKSUM: d0e64eb7bebcfbb903c456570ff14df1bb33d759
 
 COCOAPODS: 1.10.1

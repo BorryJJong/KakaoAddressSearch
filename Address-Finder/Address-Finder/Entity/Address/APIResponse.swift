@@ -8,5 +8,5 @@
 import Foundation
 
 struct APIResponse: Codable {
-    let documents: [Documents]
+  let documents: [Documents]
 }
