@@ -29,10 +29,10 @@ class AddressDetailViewController: UIViewController {
     let cameraUpdate = NMFCameraUpdate(scrollTo: camPosition)
     mapView.moveCamera(cameraUpdate)
   }
-  
+
   func setMarker() {
     let marker = NMFMarker()
-    
+
     marker.position = NMGLatLng(lat: selectedLocation.latitude, lng: selectedLocation.longitude)
     marker.iconImage = NMF_MARKER_IMAGE_BLACK
     marker.iconTintColor = UIColor.red
@@ -40,6 +40,5 @@ class AddressDetailViewController: UIViewController {
     marker.height = 30
     marker.mapView = mapView
   }
-  
-}
 
+}

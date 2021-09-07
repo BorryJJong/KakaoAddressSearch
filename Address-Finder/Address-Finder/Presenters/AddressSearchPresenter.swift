@@ -30,6 +30,7 @@ class SearchAddressPresenter {
         do {
           let getInstanceData = try JSONDecoder().decode(APIResponse.self, from: result)
           self.delegate?.presentAddress(result: getInstanceData.documents)
+          print(getInstanceData.documents)
         } catch {
           print(error.localizedDescription)
         }
@@ -41,5 +42,15 @@ class SearchAddressPresenter {
   
   public func setViewDelegate(delegate: SearchAddressPresenterDelegate & UIViewController) {
     self.delegate = delegate
+  }
+}
+
+extension UIViewController {
+  func hideKeyboard() {
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    view.addGestureRecognizer(tap)
+  }
+  @objc func dismissKeyboard() {
+    view.endEditing(true)
   }
 }

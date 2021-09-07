@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = SwiftLint;
+			productName = SwiftLint;
 		};
 		8E049F5F4E3BDC647F924FEF22D49D90 /* NMapsMap */ = {
 			isa = PBXAggregateTarget;
@@ -24,6 +25,7 @@
 			dependencies = (
 			);
 			name = NMapsMap;
+			productName = NMapsMap;
 		};
 /* End PBXAggregateTarget section */
 
@@ -84,7 +86,7 @@
 		0BDB94349D24B86E99C30B4DE8B67037 /* Alamofire-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Alamofire-Info.plist"; sourceTree = "<group>"; };
 		10D16264F36282948C9825DF08B2F1D1 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		16E60550C6913794AF284DAECC26D7BB /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
-		20BBC104C71D52BE7E3484E865AC4C17 /* Pods_Address_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Address_Finder.framework; path = "Pods-Address-Finder.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		20BBC104C71D52BE7E3484E865AC4C17 /* Pods_Address_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Address_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CC9774705D6D1B8B333EFBA7CB76FD8 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		30AC090ACAEC41A4E66A956ABDFC54E9 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		358BB1856BD37D1DDA462B12B53CB3B6 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
@@ -93,7 +95,7 @@
 		43A15580F04EC86D7781820BF3135402 /* Pods-Address-Finder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Address-Finder.release.xcconfig"; sourceTree = "<group>"; };
 		5309C1328A3B3BF5A6EEC5CC237B1A29 /* NMapsMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMapsMap.release.xcconfig; sourceTree = "<group>"; };
 		571815AEA8385A1D6EC016BB780474BC /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
-		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63CA20CDDF9DB10C3F2DFBD52BA167D7 /* NMapsMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMapsMap.framework; path = framework/NMapsMap.framework; sourceTree = "<group>"; };
 		65BDB55B5A7DB90FAF392778E3FE12B7 /* Alamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.release.xcconfig; sourceTree = "<group>"; };
 		72ED5256B15439059FC04C6DE0C4279B /* Pods-Address-Finder-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Address-Finder-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -108,7 +110,7 @@
 		997B85ED0CC954199376DBBCAA69C95E /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
 		99B5673B2B4A7C9F45D738A4061D7AA4 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
 		9D57124AB4EE5987EFE76B9451375EEF /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9EC3D345C7BBF0AA4002717E0D0B9894 /* Pods-Address-Finder-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Address-Finder-Info.plist"; sourceTree = "<group>"; };
 		A72EB3920D7671F7BC5CBF8C8EB8BCA7 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		BEC5F5CFD7F7C200507B52115207C8AF /* Pods-Address-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Address-Finder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -179,7 +181,6 @@
 				F1F92BC0AF8976FFEC4A088CE9C72155 /* Validation.swift */,
 				228EBBD1727986A8C725641C1270051D /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -189,7 +190,6 @@
 				421A4966B70278CF73E0238A5C1D92A4 /* Frameworks */,
 				532DBAB75C65DCAE0345DC74460CBC60 /* Support Files */,
 			);
-			name = NMapsMap;
 			path = NMapsMap;
 			sourceTree = "<group>";
 		};
@@ -232,7 +232,6 @@
 			children = (
 				806CC523C6250B881330093468D19181 /* Support Files */,
 			);
-			name = SwiftLint;
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
@@ -590,7 +589,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Alamofire-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -625,7 +624,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Alamofire-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
