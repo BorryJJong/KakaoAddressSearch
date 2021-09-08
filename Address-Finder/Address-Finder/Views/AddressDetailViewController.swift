@@ -11,7 +11,7 @@ import NMapsMap
 class AddressDetailViewController: UIViewController {
   
   let presenter = SearchAddressPresenter()
-  let mapView = NMFMapView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
+  lazy var mapView = NMFMapView(frame: view.frame)
   
   var selectedLocation = SelectedLocation(latitude: 37.345455350524844, longitude: 126.68751058508818)
   
