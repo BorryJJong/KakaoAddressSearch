@@ -27,6 +27,7 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
     textField.rightViewMode = UITextField.ViewMode.always
     textField.borderStyle = .roundedRect
     textField.clearButtonMode = .whileEditing
+    textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     return textField
   }()
   let addressTableView: UITableView = {
@@ -53,6 +54,12 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
     label.isHidden = true
     return label
   }()
+  let searchLodingIndicator: UIActivityIndicatorView = {
+    let activityIndicator = UIActivityIndicatorView()
+    activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+    return activityIndicator
+  }()
+
   //  let searchAddressTextFieldLeftButton: UIButton = {
   //      let button = UIButton()
   //      button.setImage(UIImage(named: "search.svg"), for: .normal)
@@ -60,7 +67,7 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
   //      button.addTarget(self, action: #selector(didGoBackButtonClicked), for: .touchUpInside)
   //      return button
   //  }()
-  var mapView = NMFMapView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
+  lazy var mapView = NMFMapView(frame: view.frame)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -69,7 +76,6 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
     setView()
     layout()
 
-    self.searchAddressTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     hideKeyboard()
 
   }
@@ -77,6 +83,7 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
   private func setView() {
     view.backgroundColor = .white
     searchAddressTextField.delegate = self
+    navigationController?.isNavigationBarHidden = true
 
     addressTableView.delegate = self
     addressTableView.dataSource = self
@@ -86,6 +93,7 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
     view.addSubview(searchAddressTextField)
     view.addSubview(searchStatusImageView)
     view.addSubview(searchStatusLabel)
+    view.addSubview(searchLodingIndicator)
   }
 
   private func layout() {
@@ -99,6 +107,8 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
 
     searchStatusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     searchStatusLabel.topAnchor.constraint(equalTo: searchStatusImageView.bottomAnchor, constant: 20).isActive = true
+
+    searchLodingIndicator.center = view.center
 
     addressTableView.topAnchor.constraint(equalTo: searchAddressTextField.bottomAnchor).isActive = true
     addressTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
@@ -116,44 +126,57 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
     searchStatusImageView.isHidden = true
     searchStatusLabel.isHidden = true
 
-    if isSuccess {
-      showResult()
-    } else {
-      searchStatusImageView.image = UIImage(named: "noResult.svg")
-      searchStatusLabel.text = "검색 결과가 없습니다"
-      hideTable()
-    }
+      if isSuccess {
+        self.showTable()
+      } else {
+        self.searchStatusImageView.image = UIImage(named: "noResult.svg")
+        self.searchStatusLabel.text = "검색 결과가 없습니다"
+        self.hideTable()
+      }
   }
 
-  func showResult() {
+  func showTable() {
     searchStatusImageView.isHidden = true
     searchStatusLabel.isHidden = true
+    addressTableView.isHidden = false
   }
 
   func hideTable() {
     searchStatusImageView.isHidden = false
     searchStatusLabel.isHidden = false
+    addressTableView.isHidden = true
   }
 
   @objc func textFieldDidBeginEditing(_ textField: UITextField) {
     mapView.isHidden = true
-    addressTableView.isHidden = false
+    //addressTableView.isHidden = true
+    hideTable()
   }
 
   @objc func textFieldDidChange(_ sender: Any?) {
-    if let keyword = searchAddressTextField.text {
-      presenter.doSearchAddress(keyword: keyword)
-      if resultList.isEmpty {
-        startSearching(isSuccess: false)
+    let time = DispatchTime.now() + .seconds(1)
+    showTable()
+    searchLodingIndicator.startAnimating()
+
+    DispatchQueue.main.asyncAfter(deadline: time) {
+      self.searchLodingIndicator.stopAnimating()
+      self.addressTableView.isHidden = false
+
+      if let keyword = self.searchAddressTextField.text {
+        self.presenter.doSearchAddress(keyword: keyword)
+        if self.resultList.isEmpty {
+          self.startSearching(isSuccess: false)
+        } else {
+          self.startSearching(isSuccess: true)
+        }
       } else {
-        startSearching(isSuccess: true)
+        self.presenter.doSearchAddress(keyword: " ")
+        self.startSearching(isSuccess: false)
       }
-    } else {
-      presenter.doSearchAddress(keyword: " ")
-      startSearching(isSuccess: false)
     }
   }
 }
+
 extension MapViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return resultList.count
@@ -205,3 +228,4 @@ extension MapViewController: UITextFieldDelegate {
     return true
   }
 }
+

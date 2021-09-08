@@ -17,7 +17,7 @@ class AddressDetailViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    print("call?")
     setMarker()
     setCamera()
     
