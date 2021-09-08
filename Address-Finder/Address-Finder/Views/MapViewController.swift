@@ -60,13 +60,6 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
     return activityIndicator
   }()
 
-  //  let searchAddressTextFieldLeftButton: UIButton = {
-  //      let button = UIButton()
-  //      button.setImage(UIImage(named: "search.svg"), for: .normal)
-  //      button.frame = CGRect(x: 5, y: 0, width: 36, height: 36)
-  //      button.addTarget(self, action: #selector(didGoBackButtonClicked), for: .touchUpInside)
-  //      return button
-  //  }()
   lazy var mapView = NMFMapView(frame: view.frame)
 
   override func viewDidLoad() {
@@ -116,12 +109,6 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
     addressTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
   }
 
-  //  @objc func didGoBackButtonClicked() {
-  //    hideKeyboard()
-  //    mapView.isHidden = false
-  //
-  //  }
-
   func startSearching(isSuccess: Bool) {
     searchStatusImageView.isHidden = true
     searchStatusLabel.isHidden = true
@@ -149,7 +136,6 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
 
   @objc func textFieldDidBeginEditing(_ textField: UITextField) {
     mapView.isHidden = true
-    //addressTableView.isHidden = true
     hideTable()
   }
 
@@ -199,12 +185,16 @@ extension MapViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-    let detailViewController = AddressDetailViewController()
+    let selectedLocation = SelectedLocation(latitude: Double(resultList[indexPath.row].latitude) ?? 0, longitude: Double(resultList[indexPath.row].longtitude) ?? 0)
 
-    detailViewController.selectedLocation.longitude = Double(resultList[indexPath.row].longtitude) ?? 0
-    detailViewController.selectedLocation.latitude = Double(resultList[indexPath.row].latitude) ?? 0
+    searchStatusImageView.isHidden = true
+    searchStatusLabel.isHidden = true
+    addressTableView.isHidden = true
+    mapView.isHidden = false
 
-    navigationController?.pushViewController(detailViewController, animated: true)
+    presenter.setCamera(mapView: mapView, selectedLocation: selectedLocation)
+    presenter.setMarker(mapView: mapView, selectedLocation: selectedLocation)
+
   }
 }
 
@@ -228,4 +218,3 @@ extension MapViewController: UITextFieldDelegate {
     return true
   }
 }
-

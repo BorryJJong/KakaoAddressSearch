@@ -14,7 +14,6 @@
 		61306DC126B0188400982447 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC026B0188400982447 /* Assets.xcassets */; };
 		61306DC426B0188400982447 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC226B0188400982447 /* LaunchScreen.storyboard */; };
 		61306DCE26B26CA600982447 /* AddressTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DCD26B26CA600982447 /* AddressTableCell.swift */; };
-		616B6E1726D9D7AD00652A72 /* AddressDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616B6E1626D9D7AD00652A72 /* AddressDetailViewController.swift */; };
 		618C734626B6B60F00A0F81B /* Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734526B6B60F00A0F81B /* Documents.swift */; };
 		6190364D26DBAC0300DFCB2D /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190364C26DBAC0300DFCB2D /* AddressModel.swift */; };
 		6190364F26E08A7E00DFCB2D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190364E26E08A7E00DFCB2D /* MapViewController.swift */; };
@@ -35,7 +34,6 @@
 		61306DC326B0188400982447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61306DC526B0188400982447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61306DCD26B26CA600982447 /* AddressTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableCell.swift; sourceTree = "<group>"; };
-		616B6E1626D9D7AD00652A72 /* AddressDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressDetailViewController.swift; sourceTree = "<group>"; };
 		618C734526B6B60F00A0F81B /* Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documents.swift; sourceTree = "<group>"; };
 		6190364C26DBAC0300DFCB2D /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		6190364E26E08A7E00DFCB2D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 			children = (
 				61306DBB26B0188200982447 /* SearchAddressViewController.swift */,
 				61306DCD26B26CA600982447 /* AddressTableCell.swift */,
-				616B6E1626D9D7AD00652A72 /* AddressDetailViewController.swift */,
 				6190364E26E08A7E00DFCB2D /* MapViewController.swift */,
 			);
 			path = Views;
@@ -285,7 +282,6 @@
 				61306DB826B0188200982447 /* AppDelegate.swift in Sources */,
 				6190364F26E08A7E00DFCB2D /* MapViewController.swift in Sources */,
 				619D38A026CB8A77000BEB66 /* AddressSearchPresenter.swift in Sources */,
-				616B6E1726D9D7AD00652A72 /* AddressDetailViewController.swift in Sources */,
 				6190364D26DBAC0300DFCB2D /* AddressModel.swift in Sources */,
 				618C734626B6B60F00A0F81B /* Documents.swift in Sources */,
 				61306DBA26B0188200982447 /* SceneDelegate.swift in Sources */,
