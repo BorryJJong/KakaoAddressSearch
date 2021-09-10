@@ -178,12 +178,12 @@ extension SearchAddressViewController: UITableViewDataSource {
   }
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-    let detailViewController = AddressDetailViewController()
-
-    detailViewController.selectedLocation.longitude = Double(resultList[indexPath.row].longtitude) ?? 0
-    detailViewController.selectedLocation.latitude = Double(resultList[indexPath.row].latitude) ?? 0
-
-    navigationController?.pushViewController(detailViewController, animated: true)
+//    let detailViewController = AddressDetailViewController()
+//
+//    detailViewController.selectedLocation.longitude = Double(resultList[indexPath.row].longtitude) ?? 0
+//    detailViewController.selectedLocation.latitude = Double(resultList[indexPath.row].latitude) ?? 0
+//
+//    navigationController?.pushViewController(detailViewController, animated: true)
   }
 }
 

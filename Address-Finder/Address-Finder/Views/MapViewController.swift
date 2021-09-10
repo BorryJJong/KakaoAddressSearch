@@ -17,8 +17,8 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
   let presenter = SearchAddressPresenter()
   var resultList: [Documents] = []
 
-  let searchAddressTextField: UITextField = {
-    let textField = UITextField()
+  let searchAddressTextField: CustomTextField = {
+    let textField = CustomTextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
     textField.heightAnchor.constraint(equalToConstant: 40).isActive = true
     textField.placeholder = "장소 검색"
@@ -27,7 +27,8 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
     textField.rightViewMode = UITextField.ViewMode.always
     textField.borderStyle = .roundedRect
     textField.clearButtonMode = .whileEditing
-    textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    textField.debounce(delay: 2){ (text) in print(text ?? "") }
+    //textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     return textField
   }()
   let addressTableView: UITableView = {
@@ -77,6 +78,7 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
     view.backgroundColor = .white
     searchAddressTextField.delegate = self
     navigationController?.isNavigationBarHidden = true
+    //navigationItem.titleView = searchAddressTextField 
 
     addressTableView.delegate = self
     addressTableView.dataSource = self
@@ -138,29 +140,29 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate {
     mapView.isHidden = true
     hideTable()
   }
-
-  @objc func textFieldDidChange(_ sender: Any?) {
-    let time = DispatchTime.now() + .seconds(1)
-    showTable()
-    searchLodingIndicator.startAnimating()
-
-    DispatchQueue.main.asyncAfter(deadline: time) {
-      self.searchLodingIndicator.stopAnimating()
-      self.addressTableView.isHidden = false
-
-      if let keyword = self.searchAddressTextField.text {
-        self.presenter.doSearchAddress(keyword: keyword)
-        if self.resultList.isEmpty {
-          self.startSearching(isSuccess: false)
-        } else {
-          self.startSearching(isSuccess: true)
-        }
-      } else {
-        self.presenter.doSearchAddress(keyword: " ")
-        self.startSearching(isSuccess: false)
-      }
-    }
-  }
+      
+//  @objc func textFieldDidChange(_ sender: Any?) {
+//    let time = DispatchTime.now() + .seconds(1)
+//    showTable()
+//    searchLodingIndicator.startAnimating()
+//
+//    DispatchQueue.main.asyncAfter(deadline: time) {
+//      self.searchLodingIndicator.stopAnimating()
+//      self.addressTableView.isHidden = false
+//
+//      if let keyword = self.searchAddressTextField.text {
+//        self.presenter.doSearchAddress(keyword: keyword)
+//        if self.resultList.isEmpty {
+//          self.startSearching(isSuccess: false)
+//        } else {
+//          self.startSearching(isSuccess: true)
+//        }
+//      } else {
+//        self.presenter.doSearchAddress(keyword: " ")
+//        self.startSearching(isSuccess: false)
+//      }
+//    }
+//  }
 }
 
 extension MapViewController: UITableViewDataSource {
@@ -187,6 +189,8 @@ extension MapViewController: UITableViewDataSource {
 
     let selectedLocation = SelectedLocation(latitude: Double(resultList[indexPath.row].latitude) ?? 0, longitude: Double(resultList[indexPath.row].longtitude) ?? 0)
 
+    let detailbottomSheetView = DetailBottomSheetViewController()
+
     searchStatusImageView.isHidden = true
     searchStatusLabel.isHidden = true
     addressTableView.isHidden = true
@@ -195,6 +199,9 @@ extension MapViewController: UITableViewDataSource {
     presenter.setCamera(mapView: mapView, selectedLocation: selectedLocation)
     presenter.setMarker(mapView: mapView, selectedLocation: selectedLocation)
 
+    detailbottomSheetView.modalPresentationStyle = .overFullScreen
+
+    self.present(detailbottomSheetView, animated: false, completion: nil)
   }
 }
 
