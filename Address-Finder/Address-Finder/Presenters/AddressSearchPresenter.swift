@@ -16,8 +16,6 @@ protocol SearchAddressPresenterDelegate: AnyObject {
 class SearchAddressPresenter {
   weak var delegate: SearchAddressPresenterDelegate?
 
-  //var selectedLocation = SelectedLocation(latitude: 37.345455350524844, longitude: 126.68751058508818)
-
   func doSearchAddress(keyword: String) {
     let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
     let parameters: [String: Any] = [ "query": keyword ]
@@ -66,7 +64,7 @@ class SearchAddressPresenter {
 }
 
 extension UIViewController {
-  func hideKeyboard() {
+  func tapToHideKeyboard() {
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     view.addGestureRecognizer(tap)
   }
