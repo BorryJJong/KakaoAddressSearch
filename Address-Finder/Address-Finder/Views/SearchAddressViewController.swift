@@ -16,13 +16,13 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
   let presenter = SearchAddressPresenter()
   var resultList: [Documents] = []
 
-  let searchAddressButton: UIButton = {
-    let button = UIButton()
-    button.setImage(UIImage(named: "search.svg"), for: .normal)
-    button.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
-    button.addTarget(self, action: #selector(didSearchButtonClicked), for: .touchUpInside)
-    return button
-  }()
+//  let searchAddressButton: UIButton = {
+//    let button = UIButton()
+//    button.setImage(UIImage(named: "search.svg"), for: .normal)
+//    button.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+//    button.addTarget(self, action: #selector(didSearchButtonClicked), for: .touchUpInside)
+//    return button
+//  }()
   let addressTableView: UITableView = {
     let tableView = UITableView()
     tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +35,7 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
     textField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    textField.placeholder = "Search Address"
+    textField.placeholder = "장소 검색"
     textField.leftViewMode = .always
     textField.clearButtonMode = .whileEditing
     textField.rightViewMode = UITextField.ViewMode.always
@@ -75,7 +75,7 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     navigationController?.navigationBar.prefersLargeTitles = true
     self.navigationItem.title = "주소 검색"
 
-    searchAddressTextField.rightView = searchAddressButton
+    // searchAddressTextField.rightView = searchAddressButton
     searchAddressTextField.delegate = self
 
     addressTableView.isHidden = true
@@ -90,9 +90,9 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
   }
 
   private func layout() {
-    searchAddressTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+    searchAddressTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    searchAddressTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
     searchAddressTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
-    searchAddressTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
     searchAddressTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
 
     searchStatusImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
