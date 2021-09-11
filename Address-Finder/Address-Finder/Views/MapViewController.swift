@@ -33,13 +33,13 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate, UITex
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    presenter.setViewDelegate(delegate: self)
+
     setView()
     layout()
-
-    hideKeyboard()
-
+    tapToHideKeyboard()
   }
-  
+
   private func setView() {
     view.backgroundColor = .white
     navigationController?.isNavigationBarHidden = true
@@ -58,8 +58,6 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate, UITex
   }
 
   @objc func textFieldDidBeginEditing(_ textField: UITextField) {
-    print("black")
-    //push search 화면
     let searchAddressView = SearchAddressViewController()
     self.navigationController?.pushViewController(searchAddressView, animated: false)
   }

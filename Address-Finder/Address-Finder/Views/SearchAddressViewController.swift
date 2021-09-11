@@ -16,13 +16,6 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
   let presenter = SearchAddressPresenter()
   var resultList: [Documents] = []
 
-//  let searchAddressButton: UIButton = {
-//    let button = UIButton()
-//    button.setImage(UIImage(named: "search.svg"), for: .normal)
-//    button.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
-//    button.addTarget(self, action: #selector(didSearchButtonClicked), for: .touchUpInside)
-//    return button
-//  }()
   let addressTableView: UITableView = {
     let tableView = UITableView()
     tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +60,8 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
 
     setView()
     layout()
-    hideKeyboard()
+    showKeyboard()
+    tapToHideKeyboard()
   }
 
   private func setView() {
@@ -75,7 +69,6 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     navigationController?.navigationBar.prefersLargeTitles = true
     self.navigationItem.title = "주소 검색"
 
-    // searchAddressTextField.rightView = searchAddressButton
     searchAddressTextField.delegate = self
 
     addressTableView.isHidden = true
@@ -143,6 +136,10 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     }
   }
 
+  func showKeyboard() {
+      searchAddressTextField.becomeFirstResponder()
+  }
+
   func showTable() {
     addressTableView.isHidden = false
     searchStatusImageView.isHidden = true
@@ -154,7 +151,6 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     searchStatusImageView.isHidden = false
     searchStatusLabel.isHidden = false
   }
-
 }
 
 extension SearchAddressViewController: UITableViewDataSource {
@@ -170,20 +166,22 @@ extension SearchAddressViewController: UITableViewDataSource {
     let placeName = resultList[indexPath.row].placeName
     let roadAddress = resultList[indexPath.row].roadAddressName
     let jibeonAddress = resultList[indexPath.row].addressName
-    // print(resultList[indexPath.row].longtitude)
 
     addressTableCell.setData(placeName: placeName, roadAddress: roadAddress, jibeonAddress: jibeonAddress)
 
     return addressTableCell
   }
+
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-//    let detailViewController = AddressDetailViewController()
-//
-//    detailViewController.selectedLocation.longitude = Double(resultList[indexPath.row].longtitude) ?? 0
-//    detailViewController.selectedLocation.latitude = Double(resultList[indexPath.row].latitude) ?? 0
-//
-//    navigationController?.pushViewController(detailViewController, animated: true)
+    let selectedLocation = SelectedLocation(latitude: Double(resultList[indexPath.row].latitude) ?? 0, longitude: Double(resultList[indexPath.row].longtitude) ?? 0)
+
+    let mapViewController = MapViewController()
+
+    presenter.setCamera(mapView: mapViewController.mapView, selectedLocation: selectedLocation)
+    presenter.setMarker(mapView: mapViewController.mapView, selectedLocation: selectedLocation)
+
+    self.navigationController?.popViewController(animated: false)
   }
 }
 
