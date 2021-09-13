@@ -16,7 +16,7 @@ protocol SearchAddressPresenterDelegate: AnyObject {
 class SearchAddressPresenter {
   weak var delegate: SearchAddressPresenterDelegate?
 
-  func doSearchAddress(keyword: String) {
+  func doSearchAddress(keyword: String){
     let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
     let parameters: [String: Any] = [ "query": keyword ]
     
@@ -37,29 +37,13 @@ class SearchAddressPresenter {
         }
       case .failure(let error):
         print(error)
+
       }
     }
   }
   
   public func setViewDelegate(delegate: SearchAddressPresenterDelegate & UIViewController) {
     self.delegate = delegate
-  }
-
-  func setCamera(mapView: NMFMapView, selectedLocation: SelectedLocation) {
-    let camPosition = NMGLatLng(lat: selectedLocation.latitude, lng: selectedLocation.longitude)
-    let cameraUpdate = NMFCameraUpdate(scrollTo: camPosition)
-    mapView.moveCamera(cameraUpdate)
-  }
-
-  func setMarker(mapView: NMFMapView, selectedLocation: SelectedLocation) {
-    let marker = NMFMarker()
-
-    marker.position = NMGLatLng(lat: selectedLocation.latitude, lng: selectedLocation.longitude)
-    marker.iconImage = NMF_MARKER_IMAGE_BLACK
-    marker.iconTintColor = UIColor.red
-    marker.width = 25
-    marker.height = 30
-    marker.mapView = mapView
   }
 }
 
