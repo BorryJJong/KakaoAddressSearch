@@ -41,7 +41,7 @@ class SearchAddressPresenter {
     }
   }
   
-  public func setViewDelegate(delegate: SearchAddressPresenterDelegate & UIViewController) {
+  func setViewDelegate(delegate: SearchAddressPresenterDelegate) {
     self.delegate = delegate
   }
 }
@@ -51,6 +51,7 @@ extension UIViewController {
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     view.addGestureRecognizer(tap)
   }
+  
   @objc func dismissKeyboard() {
     view.endEditing(true)
   }

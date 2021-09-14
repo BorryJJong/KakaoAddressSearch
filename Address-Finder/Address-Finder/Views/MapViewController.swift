@@ -10,6 +10,8 @@ import NMapsMap
 
 class MapViewController: UIViewController {
   
+  // MARK: - Properties
+  
   var location: SelectedLocation? {
     didSet {
       self.presenter.setMarker(location: self.location)
@@ -17,6 +19,9 @@ class MapViewController: UIViewController {
   }
   let presenter = MapPresenter()
   var resultList: [Documents] = []
+  
+  
+  // MARK: - UI
   
   let searchAddressTextField: UITextField = {
     let textField = UITextField()
@@ -33,12 +38,18 @@ class MapViewController: UIViewController {
   
   lazy var mapView = NMFMapView(frame: view.frame)
   
+  
+  // MARK: - LifeCycle
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setView()
     layout()
     tapToHideKeyboard()
   }
+  
+  
+  // MARK: - Layout
   
   private func setView() {
     view.backgroundColor = .white

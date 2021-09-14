@@ -60,58 +60,58 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    presenter.setViewDelegate(delegate: self)
+    self.presenter.setViewDelegate(delegate: self)
     
-    setView()
-    layout()
-    showKeyboard()
-    tapToHideKeyboard()
+    self.setView()
+    self.layout()
+    self.showKeyboard()
+    self.tapToHideKeyboard()
   }
   
   private func setView() {
-    view.backgroundColor = .white
-    navigationController?.navigationBar.prefersLargeTitles = true
+    self.view.backgroundColor = .white
+    self.navigationController?.navigationBar.prefersLargeTitles = true
     self.navigationItem.title = "주소 검색"
     
-    searchAddressTextField.delegate = self
+    self.searchAddressTextField.delegate = self
     
-    addressTableView.isHidden = true
-    addressTableView.delegate = self
-    addressTableView.dataSource = self
+    self.addressTableView.isHidden = true
+    self.addressTableView.delegate = self
+    self.addressTableView.dataSource = self
     
-    view.addSubview(searchAddressTextField)
-    view.addSubview(searchStatusImageView)
-    view.addSubview(searchStatusLabel)
-    view.addSubview(addressTableView)
-    view.addSubview(searchLodingIndicator)
+    self.view.addSubview(self.searchAddressTextField)
+    self.view.addSubview(self.searchStatusImageView)
+    self.view.addSubview(self.searchStatusLabel)
+    self.view.addSubview(self.addressTableView)
+    self.view.addSubview(self.searchLodingIndicator)
   }
   
   private func layout() {
-    searchAddressTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    searchAddressTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-    searchAddressTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
-    searchAddressTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
+    self.searchAddressTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    self.searchAddressTextField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+    self.searchAddressTextField.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+    self.searchAddressTextField.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
     
-    searchStatusImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    searchStatusImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    self.searchStatusImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+    self.searchStatusImageView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     
-    searchStatusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    searchStatusLabel.topAnchor.constraint(equalTo: searchStatusImageView.bottomAnchor, constant: 20).isActive = true
+    self.searchStatusLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+    self.searchStatusLabel.topAnchor.constraint(equalTo: self.searchStatusImageView.bottomAnchor, constant: 20).isActive = true
     
-    searchLodingIndicator.center = view.center
+    self.searchLodingIndicator.center = self.view.center
     
-    addressTableView.topAnchor.constraint(equalTo: searchAddressTextField.bottomAnchor).isActive = true
-    addressTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-    addressTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-    addressTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+    self.addressTableView.topAnchor.constraint(equalTo: self.searchAddressTextField.bottomAnchor).isActive = true
+    self.addressTableView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+    self.addressTableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    self.addressTableView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
   }
   
-  func startSearching(isSuccess: Bool) {
+  private func startSearching(isSuccess: Bool) {
     let time = DispatchTime.now() + .seconds(1)
     
-    searchStatusImageView.isHidden = true
-    searchStatusLabel.isHidden = true
-    searchLodingIndicator.startAnimating()
+    self.searchStatusImageView.isHidden = true
+    self.searchStatusLabel.isHidden = true
+    self.searchLodingIndicator.startAnimating()
     
     DispatchQueue.main.asyncAfter(deadline: time) {
       self.searchLodingIndicator.stopAnimating()
@@ -123,23 +123,23 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
         self.hideTable()
       }
     }
-    resultList = []
+    self.resultList = []
   }
   
-  func showKeyboard() {
+  private func showKeyboard() {
     searchAddressTextField.becomeFirstResponder()
   }
   
-  func showTable() {
-    addressTableView.isHidden = false
-    searchStatusImageView.isHidden = true
-    searchStatusLabel.isHidden = true
+  private func showTable() {
+    self.addressTableView.isHidden = false
+    self.searchStatusImageView.isHidden = true
+    self.searchStatusLabel.isHidden = true
   }
   
-  func hideTable() {
-    addressTableView.isHidden = true
-    searchStatusImageView.isHidden = false
-    searchStatusLabel.isHidden = false
+  private func hideTable() {
+    self.addressTableView.isHidden = true
+    self.searchStatusImageView.isHidden = false
+    self.searchStatusLabel.isHidden = false
   }
 }
 
@@ -153,9 +153,9 @@ extension SearchAddressViewController: UITableViewDataSource, UITableViewDelegat
       return .init()
     }
     
-    let placeName = resultList[indexPath.row].placeName
-    let roadAddress = resultList[indexPath.row].roadAddressName
-    let jibeonAddress = resultList[indexPath.row].addressName
+    let placeName = self.resultList[indexPath.row].placeName
+    let roadAddress = self.resultList[indexPath.row].roadAddressName
+    let jibeonAddress = self.resultList[indexPath.row].addressName
     
     addressTableCell.setData(placeName: placeName, roadAddress: roadAddress, jibeonAddress: jibeonAddress)
     
@@ -168,6 +168,9 @@ extension SearchAddressViewController: UITableViewDataSource, UITableViewDelegat
       longitude: Double(resultList[indexPath.row].longtitude) ?? 0
     )
     
+    /// 현재 네비게이션뷰에서 가장 첫번째 뷰컨에 접근하여 캐스팅 작업
+    /// viewControllers[0] -> MapViewController
+    /// viewControllers[1] -> SearchAddressViewController 라고 볼 수 있음 현재
     if let parentView = self.navigationController?.viewControllers[0] as? MapViewController {
       parentView.presenter.setMarker(location: selectedLocation)
     }
@@ -178,13 +181,13 @@ extension SearchAddressViewController: UITableViewDataSource, UITableViewDelegat
 
 extension SearchAddressViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    addressTableView.isHidden = true
+    self.addressTableView.isHidden = true
     
-    if let keyword = searchAddressTextField.text {
-      presenter.doSearchAddress(keyword: keyword)
-      startSearching(isSuccess: true)
+    if let keyword = self.searchAddressTextField.text {
+      self.presenter.doSearchAddress(keyword: keyword)
+      self.startSearching(isSuccess: true)
     } else {
-      startSearching(isSuccess: false)
+      self.startSearching(isSuccess: false)
     }
     return true
   }

@@ -30,8 +30,8 @@ class AddressTableCell: UITableViewCell {
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
   super.init(style: style, reuseIdentifier: reuseIdentifier)
-    setView()
-    layout()
+    self.setView()
+    self.layout()
   }
 
   required init?(coder: NSCoder) {
@@ -39,29 +39,29 @@ class AddressTableCell: UITableViewCell {
   }
 
   func setView() {
-    contentView.addSubview(placeNameLabel)
-    contentView.addSubview(roadAddressLabel)
-    contentView.addSubview(jibeonAddressLabel)
+    self.contentView.addSubview(self.placeNameLabel)
+    self.contentView.addSubview(self.roadAddressLabel)
+    self.contentView.addSubview(self.jibeonAddressLabel)
   }
 
   func layout() {
-    placeNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-    placeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-    placeNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10).isActive = true
+    self.placeNameLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20).isActive = true
+    self.placeNameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
+    self.placeNameLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 10).isActive = true
 
-    roadAddressLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-    roadAddressLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: 10).isActive = true
-    roadAddressLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+    self.roadAddressLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20).isActive = true
+    self.roadAddressLabel.topAnchor.constraint(equalTo: self.placeNameLabel.bottomAnchor, constant: 10).isActive = true
+    self.roadAddressLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20).isActive = true
 
-    jibeonAddressLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-    jibeonAddressLabel.topAnchor.constraint(equalTo: roadAddressLabel.bottomAnchor, constant: 10).isActive = true
-    jibeonAddressLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-    jibeonAddressLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+    self.jibeonAddressLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20).isActive = true
+    self.jibeonAddressLabel.topAnchor.constraint(equalTo: self.roadAddressLabel.bottomAnchor, constant: 10).isActive = true
+    self.jibeonAddressLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10).isActive = true
+    self.jibeonAddressLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20).isActive = true
   }
 
   func setData(placeName: String, roadAddress: String, jibeonAddress: String) {
-    placeNameLabel.text = placeName
-    roadAddressLabel.text = ("도로명: ") + roadAddress
-    jibeonAddressLabel.text = ("지번: ") + jibeonAddress
+    self.placeNameLabel.text = placeName
+    self.roadAddressLabel.text = ("도로명: ") + roadAddress
+    self.jibeonAddressLabel.text = ("지번: ") + jibeonAddress
   }
 }
