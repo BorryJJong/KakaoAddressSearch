@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SendLocationDelegate: AnyObject {
+  func sendLocation(location: SelectedLocation)
+}
+
 class SearchAddressViewController: UIViewController, SearchAddressPresenterDelegate {
   func presentAddress(result: [Documents]) {
     self.resultList = result
@@ -15,6 +19,7 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
 
   let presenter = SearchAddressPresenter()
   var resultList: [Documents] = []
+  weak var sendLocationDelegate: SendLocationDelegate?
 
   let addressTableView: UITableView = {
     let tableView = UITableView()
@@ -102,20 +107,20 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     addressTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
   }
 
-  @objc func didSearchButtonClicked() {
-    addressTableView.isHidden = true
-    if let keyword = searchAddressTextField.text {
-      presenter.doSearchAddress(keyword: keyword)
-      if resultList.isEmpty {
-        startSearching(isSuccess: false)
-      } else {
-        startSearching(isSuccess: true)
-      }
-    } else {
-      presenter.doSearchAddress(keyword: " ")
-      startSearching(isSuccess: false)
-    }
-  }
+//  @objc func didSearchButtonClicked() {
+//    addressTableView.isHidden = true
+//    if let keyword = searchAddressTextField.text {
+//      presenter.doSearchAddress(keyword: keyword)
+//      if resultList.isEmpty {
+//        startSearching(isSuccess: false)
+//      } else {
+//        startSearching(isSuccess: true)
+//      }
+//    } else {
+//      presenter.doSearchAddress(keyword: " ")
+//      startSearching(isSuccess: false)
+//    }
+//  }
 
   func startSearching(isSuccess: Bool) {
     let time = DispatchTime.now() + .seconds(1)
@@ -126,7 +131,7 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
 
     DispatchQueue.main.asyncAfter(deadline: time) {
       self.searchLodingIndicator.stopAnimating()
-      if isSuccess {
+      if isSuccess && !self.resultList.isEmpty {
         self.showTable()
       } else {
         self.searchStatusImageView.image = UIImage(named: "noResult.svg")
@@ -134,6 +139,7 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
         self.hideTable()
       }
     }
+    resultList = []
   }
 
   func showKeyboard() {
@@ -173,14 +179,9 @@ extension SearchAddressViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
     let selectedLocation = SelectedLocation(latitude: Double(resultList[indexPath.row].latitude) ?? 0, longitude: Double(resultList[indexPath.row].longtitude) ?? 0)
 
-    let mapViewController = MapViewController()
-
-    presenter.setCamera(mapView: mapViewController.mapView, selectedLocation: selectedLocation)
-    presenter.setMarker(mapView: mapViewController.mapView, selectedLocation: selectedLocation)
-
+    sendLocationDelegate?.sendLocation(location: selectedLocation)
     self.navigationController?.popViewController(animated: false)
   }
 }
@@ -193,13 +194,8 @@ extension SearchAddressViewController: UITextFieldDelegate {
     addressTableView.isHidden = true
     if let keyword = searchAddressTextField.text {
       presenter.doSearchAddress(keyword: keyword)
-      if resultList.isEmpty {
-        startSearching(isSuccess: false)
-      } else {
-        startSearching(isSuccess: true)
-      }
+      startSearching(isSuccess: true)
     } else {
-      presenter.doSearchAddress(keyword: " ")
       startSearching(isSuccess: false)
     }
     return true
