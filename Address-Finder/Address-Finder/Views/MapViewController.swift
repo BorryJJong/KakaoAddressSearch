@@ -8,21 +8,16 @@
 import UIKit
 import NMapsMap
 
-class MapViewController: UIViewController, SearchAddressPresenterDelegate, SendLocationDelegate {
-  func sendLocation(location: SelectedLocation) {
-    print("2")
-    setCamera(selectedLocation: location)
-    setMarker(selectedLocation: location)
+class MapViewController: UIViewController {
+  
+  var location: SelectedLocation? {
+    didSet {
+      self.presenter.setMarker(location: self.location)
+    }
   }
-
-  func presentAddress(result: [Documents]) {
-    self.resultList = result
-  }
-
-  let presenter = SearchAddressPresenter()
-  let searchViewController = SearchAddressViewController()
+  let presenter = MapPresenter()
   var resultList: [Documents] = []
-
+  
   let searchAddressTextField: UITextField = {
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
@@ -35,58 +30,60 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate, SendL
     textField.clearButtonMode = .whileEditing
     return textField
   }()
+  
   lazy var mapView = NMFMapView(frame: view.frame)
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setView()
     layout()
     tapToHideKeyboard()
   }
-
+  
   private func setView() {
     view.backgroundColor = .white
     navigationController?.isNavigationBarHidden = true
-
-    presenter.setViewDelegate(delegate: self)
-    searchAddressTextField.delegate = self
-    searchViewController.sendLocationDelegate = self
-
+    
+    self.presenter.delegate = self
+    
     view.addSubview(mapView)
     view.addSubview(searchAddressTextField)
   }
-
+  
   private func layout() {
     searchAddressTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
     searchAddressTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
     searchAddressTextField.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
     searchAddressTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
   }
-
-  func setCamera(selectedLocation: SelectedLocation) {
-    let camPosition = NMGLatLng(lat: selectedLocation.latitude, lng: selectedLocation.longitude)
+  
+  private func setCamera(selectedLocation: SelectedLocation?) {
+    let camPosition = NMGLatLng(lat: selectedLocation?.latitude ?? 0, lng: selectedLocation?.longitude ?? 0)
     let cameraUpdate = NMFCameraUpdate(scrollTo: camPosition)
-
+    
     mapView.moveCamera(cameraUpdate)
-    print(selectedLocation.latitude)
   }
-
-  func setMarker(selectedLocation: SelectedLocation) {
+  
+  private func setMarker(selectedLocation: SelectedLocation?) {
     let marker = NMFMarker()
-
-    marker.position = NMGLatLng(lat: selectedLocation.latitude, lng: selectedLocation.longitude)
+    
+    marker.position = NMGLatLng(lat: selectedLocation?.latitude ?? 0, lng: selectedLocation?.longitude ?? 0)
     marker.iconImage = NMF_MARKER_IMAGE_BLACK
     marker.iconTintColor = UIColor.red
     marker.width = 25
     marker.height = 30
     marker.mapView = mapView
   }
-
+  
   @objc func textFieldDidBeginEditing(_ textField: UITextField) {
     let searchAddressView = SearchAddressViewController()
     self.navigationController?.pushViewController(searchAddressView, animated: false)
   }
 }
 
-extension MapViewController: UITextFieldDelegate{
+extension MapViewController: MapPresenterDelegate {
+  func setMarker(location: SelectedLocation?) {
+    self.setCamera(selectedLocation: location)
+    self.setMarker(selectedLocation: location)
+  }
 }

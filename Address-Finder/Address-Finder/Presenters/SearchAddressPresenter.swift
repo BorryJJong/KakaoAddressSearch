@@ -15,10 +15,10 @@ protocol SearchAddressPresenterDelegate: AnyObject {
 
 class SearchAddressPresenter {
   weak var delegate: SearchAddressPresenterDelegate?
-
-  func doSearchAddress(keyword: String){
-    let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
-    let parameters: [String: Any] = [ "query": keyword ]
+  
+  func doSearchAddress(keyword: String) {
+    let headers: HTTPHeaders = ["Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e"]
+    let parameters: [String: Any] = ["query": keyword]
     
     Alamofire.request(
       "https://dapi.kakao.com/v2/local/search/keyword.json",
@@ -37,7 +37,6 @@ class SearchAddressPresenter {
         }
       case .failure(let error):
         print(error)
-
       }
     }
   }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		207EB6DB26F071F70007720F /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EB6DA26F071F70007720F /* MapPresenter.swift */; };
 		61306DB826B0188200982447 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DB726B0188200982447 /* AppDelegate.swift */; };
 		61306DBA26B0188200982447 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DB926B0188200982447 /* SceneDelegate.swift */; };
 		61306DBC26B0188200982447 /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DBB26B0188200982447 /* SearchAddressViewController.swift */; };
@@ -18,13 +19,14 @@
 		6190364D26DBAC0300DFCB2D /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190364C26DBAC0300DFCB2D /* AddressModel.swift */; };
 		6190364F26E08A7E00DFCB2D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190364E26E08A7E00DFCB2D /* MapViewController.swift */; };
 		6190365626E1F42200DFCB2D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 6190365526E1F42200DFCB2D /* .swiftlint.yml */; };
-		619D38A026CB8A77000BEB66 /* AddressSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */; };
+		619D38A026CB8A77000BEB66 /* SearchAddressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D389F26CB8A77000BEB66 /* SearchAddressPresenter.swift */; };
 		61BA939926D8F7F300544ADF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BA939826D8F7F300544ADF /* APIResponse.swift */; };
 		FB540650C3F15E632FE251FE /* Pods_Address_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		11E21C4FDF3AA116F505F50A /* Pods-Address-Finder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Address-Finder.release.xcconfig"; path = "Target Support Files/Pods-Address-Finder/Pods-Address-Finder.release.xcconfig"; sourceTree = "<group>"; };
+		207EB6DA26F071F70007720F /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		61306DB426B0188200982447 /* Address-Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Address-Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		61306DB726B0188200982447 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61306DB926B0188200982447 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +40,7 @@
 		6190364C26DBAC0300DFCB2D /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		6190364E26E08A7E00DFCB2D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6190365526E1F42200DFCB2D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchPresenter.swift; sourceTree = "<group>"; };
+		619D389F26CB8A77000BEB66 /* SearchAddressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressPresenter.swift; sourceTree = "<group>"; };
 		61BA939826D8F7F300544ADF /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Address-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Address-Finder/Pods-Address-Finder.debug.xcconfig"; sourceTree = "<group>"; };
 		DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Address_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,7 +114,8 @@
 		619D389826CB52BF000BEB66 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */,
+				619D389F26CB8A77000BEB66 /* SearchAddressPresenter.swift */,
+				207EB6DA26F071F70007720F /* MapPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -121,8 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				61306DBB26B0188200982447 /* SearchAddressViewController.swift */,
-				61306DCD26B26CA600982447 /* AddressTableCell.swift */,
 				6190364E26E08A7E00DFCB2D /* MapViewController.swift */,
+				61306DCD26B26CA600982447 /* AddressTableCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,9 +284,10 @@
 				61306DBC26B0188200982447 /* SearchAddressViewController.swift in Sources */,
 				61306DB826B0188200982447 /* AppDelegate.swift in Sources */,
 				6190364F26E08A7E00DFCB2D /* MapViewController.swift in Sources */,
-				619D38A026CB8A77000BEB66 /* AddressSearchPresenter.swift in Sources */,
+				619D38A026CB8A77000BEB66 /* SearchAddressPresenter.swift in Sources */,
 				6190364D26DBAC0300DFCB2D /* AddressModel.swift in Sources */,
 				618C734626B6B60F00A0F81B /* Documents.swift in Sources */,
+				207EB6DB26F071F70007720F /* MapPresenter.swift in Sources */,
 				61306DBA26B0188200982447 /* SceneDelegate.swift in Sources */,
 				61BA939926D8F7F300544ADF /* APIResponse.swift in Sources */,
 			);
@@ -434,7 +438,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R4HW69RLJ5;
+				DEVELOPMENT_TEAM = TG4L9MF5FD;
 				INFOPLIST_FILE = "Address-Finder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -454,7 +458,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R4HW69RLJ5;
+				DEVELOPMENT_TEAM = TG4L9MF5FD;
 				INFOPLIST_FILE = "Address-Finder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
