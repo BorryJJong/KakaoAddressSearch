@@ -23,13 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     window?.rootViewController = navigationController
     window?.makeKeyAndVisible()
-    //window?.windowScene = windowScene
-
-    //    let mainViewController = MapViewController()
-    //    let navigationController = UINavigationController(rootViewController: mainViewController)
-    //
-    //    window?.rootViewController = navigationController
-    //    window?.makeKeyAndVisible()
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {

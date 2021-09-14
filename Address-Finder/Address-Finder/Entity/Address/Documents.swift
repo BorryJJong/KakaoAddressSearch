@@ -21,16 +21,4 @@ struct Documents: Codable {
     case longtitude = "x"
     case latitude = "y"
   }
-  
-  //    let addressName: String
-  //    let addressType: String
-  //    let address: Address?
-  //    let roadAddress: RoadAddress?
-  //
-  //    enum CodingKeys : String, CodingKey {
-  //        case addressName = "address_name"
-  //        case addressType = "address_type"
-  //        case address
-  //        case roadAddress = "road_address"
-  //    }
 }

@@ -52,6 +52,7 @@ class MapViewController: UIViewController, UITextFieldDelegate {
 
   @objc func textFieldDidBeginEditing(_ textField: UITextField) {
     let searchAddressView = SearchAddressViewController()
+    
     self.navigationController?.pushViewController(searchAddressView, animated: false)
   }
 }
@@ -62,7 +63,6 @@ extension MapViewController: MapPresenterDelegate {
     let cameraUpdate = NMFCameraUpdate(scrollTo: camPosition)
 
     mapView.moveCamera(cameraUpdate)
-    print(location?.latitude)
   }
 
   func setMarkerLocation(location: SelectedLocation?) {
