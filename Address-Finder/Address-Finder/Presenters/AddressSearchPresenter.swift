@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import NMapsMap
 
 protocol SearchAddressPresenterDelegate: AnyObject {
   func presentAddress(result: [Documents])
@@ -37,12 +36,11 @@ class SearchAddressPresenter {
         }
       case .failure(let error):
         print(error)
-
       }
     }
   }
   
-  public func setViewDelegate(delegate: SearchAddressPresenterDelegate & UIViewController) {
+  func setViewDelegate(delegate: SearchAddressPresenterDelegate & UIViewController) {
     self.delegate = delegate
   }
 }

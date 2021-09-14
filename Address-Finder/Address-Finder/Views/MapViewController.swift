@@ -8,20 +8,8 @@
 import UIKit
 import NMapsMap
 
-class MapViewController: UIViewController, SearchAddressPresenterDelegate, SendLocationDelegate {
-  func sendLocation(location: SelectedLocation) {
-    print("2")
-    setCamera(selectedLocation: location)
-    setMarker(selectedLocation: location)
-  }
-
-  func presentAddress(result: [Documents]) {
-    self.resultList = result
-  }
-
-  let presenter = SearchAddressPresenter()
-  let searchViewController = SearchAddressViewController()
-  var resultList: [Documents] = []
+class MapViewController: UIViewController, UITextFieldDelegate {
+  let presenter = MapPresenter()
 
   let searchAddressTextField: UITextField = {
     let textField = UITextField()
@@ -48,9 +36,8 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate, SendL
     view.backgroundColor = .white
     navigationController?.isNavigationBarHidden = true
 
-    presenter.setViewDelegate(delegate: self)
+    self.presenter.delegate = self
     searchAddressTextField.delegate = self
-    searchViewController.sendLocationDelegate = self
 
     view.addSubview(mapView)
     view.addSubview(searchAddressTextField)
@@ -63,30 +50,29 @@ class MapViewController: UIViewController, SearchAddressPresenterDelegate, SendL
     searchAddressTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
   }
 
-  func setCamera(selectedLocation: SelectedLocation) {
-    let camPosition = NMGLatLng(lat: selectedLocation.latitude, lng: selectedLocation.longitude)
-    let cameraUpdate = NMFCameraUpdate(scrollTo: camPosition)
-
-    mapView.moveCamera(cameraUpdate)
-    print(selectedLocation.latitude)
-  }
-
-  func setMarker(selectedLocation: SelectedLocation) {
-    let marker = NMFMarker()
-
-    marker.position = NMGLatLng(lat: selectedLocation.latitude, lng: selectedLocation.longitude)
-    marker.iconImage = NMF_MARKER_IMAGE_BLACK
-    marker.iconTintColor = UIColor.red
-    marker.width = 25
-    marker.height = 30
-    marker.mapView = mapView
-  }
-
   @objc func textFieldDidBeginEditing(_ textField: UITextField) {
     let searchAddressView = SearchAddressViewController()
     self.navigationController?.pushViewController(searchAddressView, animated: false)
   }
 }
 
-extension MapViewController: UITextFieldDelegate{
+extension MapViewController: MapPresenterDelegate {
+  func setCamera(location: SelectedLocation?) {
+    let camPosition = NMGLatLng(lat: location?.latitude ?? 0, lng: location?.longitude ?? 0)
+    let cameraUpdate = NMFCameraUpdate(scrollTo: camPosition)
+
+    mapView.moveCamera(cameraUpdate)
+    print(location?.latitude)
+  }
+
+  func setMarkerLocation(location: SelectedLocation?) {
+    let marker = NMFMarker()
+
+    marker.position = NMGLatLng(lat: location?.latitude ?? 0, lng: location?.longitude ?? 0)
+    marker.iconImage = NMF_MARKER_IMAGE_BLACK
+    marker.iconTintColor = UIColor.red
+    marker.width = 25
+    marker.height = 30
+    marker.mapView = mapView
+  }
 }

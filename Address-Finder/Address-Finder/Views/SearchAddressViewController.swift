@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol SendLocationDelegate: AnyObject {
-  func sendLocation(location: SelectedLocation)
-}
-
 class SearchAddressViewController: UIViewController, SearchAddressPresenterDelegate {
   func presentAddress(result: [Documents]) {
     self.resultList = result
@@ -19,7 +15,6 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
 
   let presenter = SearchAddressPresenter()
   var resultList: [Documents] = []
-  weak var sendLocationDelegate: SendLocationDelegate?
 
   let addressTableView: UITableView = {
     let tableView = UITableView()
@@ -107,21 +102,6 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     addressTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
   }
 
-//  @objc func didSearchButtonClicked() {
-//    addressTableView.isHidden = true
-//    if let keyword = searchAddressTextField.text {
-//      presenter.doSearchAddress(keyword: keyword)
-//      if resultList.isEmpty {
-//        startSearching(isSuccess: false)
-//      } else {
-//        startSearching(isSuccess: true)
-//      }
-//    } else {
-//      presenter.doSearchAddress(keyword: " ")
-//      startSearching(isSuccess: false)
-//    }
-//  }
-
   func startSearching(isSuccess: Bool) {
     let time = DispatchTime.now() + .seconds(1)
 
@@ -181,7 +161,9 @@ extension SearchAddressViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let selectedLocation = SelectedLocation(latitude: Double(resultList[indexPath.row].latitude) ?? 0, longitude: Double(resultList[indexPath.row].longtitude) ?? 0)
 
-    sendLocationDelegate?.sendLocation(location: selectedLocation)
+    if let parentView = self.navigationController?.viewControllers[0] as? MapViewController {
+      parentView.presenter.setMarker(location: selectedLocation)
+    }
     self.navigationController?.popViewController(animated: false)
   }
 }
