@@ -19,7 +19,7 @@
 		6190364F26E08A7E00DFCB2D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190364E26E08A7E00DFCB2D /* MapViewController.swift */; };
 		6190365626E1F42200DFCB2D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 6190365526E1F42200DFCB2D /* .swiftlint.yml */; };
 		6190365E26F0821D00DFCB2D /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190365D26F0821D00DFCB2D /* MapPresenter.swift */; };
-		619D38A026CB8A77000BEB66 /* AddressSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */; };
+		619D38A026CB8A77000BEB66 /* SearchAddressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D389F26CB8A77000BEB66 /* SearchAddressPresenter.swift */; };
 		61BA939926D8F7F300544ADF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BA939826D8F7F300544ADF /* APIResponse.swift */; };
 		FB540650C3F15E632FE251FE /* Pods_Address_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */; };
 /* End PBXBuildFile section */
@@ -40,7 +40,7 @@
 		6190364E26E08A7E00DFCB2D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6190365526E1F42200DFCB2D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		6190365D26F0821D00DFCB2D /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
-		619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchPresenter.swift; sourceTree = "<group>"; };
+		619D389F26CB8A77000BEB66 /* SearchAddressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressPresenter.swift; sourceTree = "<group>"; };
 		61BA939826D8F7F300544ADF /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Address-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Address-Finder/Pods-Address-Finder.debug.xcconfig"; sourceTree = "<group>"; };
 		DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Address_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +114,7 @@
 		619D389826CB52BF000BEB66 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				619D389F26CB8A77000BEB66 /* AddressSearchPresenter.swift */,
+				619D389F26CB8A77000BEB66 /* SearchAddressPresenter.swift */,
 				6190365D26F0821D00DFCB2D /* MapPresenter.swift */,
 			);
 			path = Presenters;
@@ -284,7 +284,7 @@
 				61306DBC26B0188200982447 /* SearchAddressViewController.swift in Sources */,
 				61306DB826B0188200982447 /* AppDelegate.swift in Sources */,
 				6190364F26E08A7E00DFCB2D /* MapViewController.swift in Sources */,
-				619D38A026CB8A77000BEB66 /* AddressSearchPresenter.swift in Sources */,
+				619D38A026CB8A77000BEB66 /* SearchAddressPresenter.swift in Sources */,
 				6190364D26DBAC0300DFCB2D /* AddressModel.swift in Sources */,
 				618C734626B6B60F00A0F81B /* Documents.swift in Sources */,
 				6190365E26F0821D00DFCB2D /* MapPresenter.swift in Sources */,
