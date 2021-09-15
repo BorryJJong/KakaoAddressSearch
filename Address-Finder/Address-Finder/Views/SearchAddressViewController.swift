@@ -8,6 +8,9 @@
 import UIKit
 
 class SearchAddressViewController: UIViewController, SearchAddressPresenterDelegate {
+
+  // MARK: - Properties
+
   func presentAddress(result: [Documents]) {
     self.resultList = result
     self.addressTableView.reloadData()
@@ -15,6 +18,8 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
 
   let presenter = SearchAddressPresenter()
   var resultList: [Documents] = []
+
+  // MARK: - UI
 
   let addressTableView: UITableView = {
     let tableView = UITableView()
@@ -58,15 +63,18 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     return activityIndicator
   }()
 
+  // MARK: - LifeCycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
     presenter.setViewDelegate(delegate: self)
-
     setView()
     layout()
     showKeyboard()
     tapToHideKeyboard()
   }
+
+  // MARK: - Layout
 
   private func setView() {
     view.backgroundColor = .white
@@ -106,6 +114,8 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     addressTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
   }
 
+  // MARK: - Functions
+
   func startSearching(isSuccess: Bool) {
     let time = DispatchTime.now() + .seconds(1)
 
@@ -143,6 +153,8 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
   }
 }
 
+// MARK: - UITableViewDataSource
+
 extension SearchAddressViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return resultList.count
@@ -172,8 +184,12 @@ extension SearchAddressViewController: UITableViewDataSource {
   }
 }
 
+// MARK: - UITableViewDelegate
+
 extension SearchAddressViewController: UITableViewDelegate {
 }
+
+// MARK: - UITextFieldDelegate
 
 extension SearchAddressViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {

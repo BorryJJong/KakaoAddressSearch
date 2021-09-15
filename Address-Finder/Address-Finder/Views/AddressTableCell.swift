@@ -8,6 +8,9 @@
 import UIKit
 
 class AddressTableCell: UITableViewCell {
+
+  // MARK: - UI
+
   let placeNameLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -27,6 +30,8 @@ class AddressTableCell: UITableViewCell {
     return label
   }()
 
+  // MARK: - Initialize
+
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
   super.init(style: style, reuseIdentifier: reuseIdentifier)
     setView()
@@ -36,6 +41,8 @@ class AddressTableCell: UITableViewCell {
   required init?(coder: NSCoder) {
     super.init(coder: coder)
   }
+
+  // MARK: - Layout
 
   func setView() {
     contentView.addSubview(placeNameLabel)

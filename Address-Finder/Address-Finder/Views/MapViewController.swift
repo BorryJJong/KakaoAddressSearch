@@ -9,7 +9,12 @@ import UIKit
 import NMapsMap
 
 class MapViewController: UIViewController, UITextFieldDelegate {
+
+  // MARK: Properties
+
   let presenter = MapPresenter()
+
+  // MARK: - UI
 
   let searchAddressTextField: UITextField = {
     let textField = UITextField()
@@ -26,12 +31,16 @@ class MapViewController: UIViewController, UITextFieldDelegate {
   
   lazy var mapView = NMFMapView(frame: view.frame)
 
+  // MARK: - Lifecycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setView()
     layout()
     tapToHideKeyboard()
   }
+
+  // MARK: - Layout
 
   private func setView() {
     view.backgroundColor = .white
@@ -51,12 +60,16 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     searchAddressTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
   }
 
+  // MARK: - Functions
+
   @objc func textFieldDidBeginEditing(_ textField: UITextField) {
     let searchAddressView = SearchAddressViewController()
     
     self.navigationController?.pushViewController(searchAddressView, animated: false)
   }
 }
+
+// MARK: - MapPresenterDelegate
 
 extension MapViewController: MapPresenterDelegate {
   func setCamera(location: SelectedLocation?) {

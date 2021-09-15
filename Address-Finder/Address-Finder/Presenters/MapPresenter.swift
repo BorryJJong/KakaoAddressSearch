@@ -14,8 +14,13 @@ protocol MapPresenterDelegate: AnyObject {
 }
 
 class MapPresenter {
+
+  // MARK: - Properties
+
   weak var delegate: MapPresenterDelegate?
-  
+
+  // MARK: - Functions
+
   func setMarker(location: SelectedLocation?) {
     self.delegate?.setMarkerLocation(location: location)
     self.delegate?.setCamera(location: location)

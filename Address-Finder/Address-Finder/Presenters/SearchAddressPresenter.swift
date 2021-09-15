@@ -13,9 +13,14 @@ protocol SearchAddressPresenterDelegate: AnyObject {
 }
 
 class SearchAddressPresenter {
+
+  // MARK: - Properties
+
   weak var delegate: SearchAddressPresenterDelegate?
 
-  func doSearchAddress(keyword: String){
+  // MARK: - Functions
+
+  func doSearchAddress(keyword: String) {
     let headers: HTTPHeaders = [ "Authorization": "KakaoAK 754d4ea04671ab9d7e2add279d718b0e" ]
     let parameters: [String: Any] = [ "query": keyword ]
     
@@ -44,6 +49,8 @@ class SearchAddressPresenter {
     self.delegate = delegate
   }
 }
+
+// MARK: - Extensions
 
 extension UIViewController {
   func tapToHideKeyboard() {
