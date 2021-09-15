@@ -24,6 +24,7 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     tableView.allowsSelection = true
     return tableView
   }()
+
   let searchAddressTextField: UITextField = {
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
@@ -35,12 +36,14 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     textField.borderStyle = .roundedRect
     return textField
   }()
+
   let searchStatusImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.image = UIImage(named: "map.svg")
     return imageView
   }()
+
   let searchStatusLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +51,7 @@ class SearchAddressViewController: UIViewController, SearchAddressPresenterDeleg
     label.text = "검색어를 입력하세요"
     return label
   }()
+  
   let searchLodingIndicator: UIActivityIndicatorView = {
     let activityIndicator = UIActivityIndicatorView()
     activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)

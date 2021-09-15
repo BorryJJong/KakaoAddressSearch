@@ -14,11 +14,13 @@ class AddressTableCell: UITableViewCell {
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
+
   let roadAddressLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
+  
   let jibeonAddressLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false

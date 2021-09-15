@@ -23,6 +23,7 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     textField.clearButtonMode = .whileEditing
     return textField
   }()
+  
   lazy var mapView = NMFMapView(frame: view.frame)
 
   override func viewDidLoad() {
