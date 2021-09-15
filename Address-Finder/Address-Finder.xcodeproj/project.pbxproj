@@ -9,15 +9,18 @@
 /* Begin PBXBuildFile section */
 		61306DB826B0188200982447 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DB726B0188200982447 /* AppDelegate.swift */; };
 		61306DBA26B0188200982447 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DB926B0188200982447 /* SceneDelegate.swift */; };
-		61306DBC26B0188200982447 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DBB26B0188200982447 /* ViewController.swift */; };
+		61306DBC26B0188200982447 /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DBB26B0188200982447 /* SearchAddressViewController.swift */; };
 		61306DBF26B0188200982447 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61306DBD26B0188200982447 /* Main.storyboard */; };
 		61306DC126B0188400982447 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC026B0188400982447 /* Assets.xcassets */; };
 		61306DC426B0188400982447 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61306DC226B0188400982447 /* LaunchScreen.storyboard */; };
 		61306DCE26B26CA600982447 /* AddressTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DCD26B26CA600982447 /* AddressTableCell.swift */; };
-		61306DD026B2743400982447 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61306DCF26B2743400982447 /* Address.swift */; };
 		618C734626B6B60F00A0F81B /* Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734526B6B60F00A0F81B /* Documents.swift */; };
-		618C734926B6B63000A0F81B /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734826B6B63000A0F81B /* APIResponse.swift */; };
-		618C734B26B6B64800A0F81B /* RoadAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C734A26B6B64800A0F81B /* RoadAddress.swift */; };
+		6190364D26DBAC0300DFCB2D /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190364C26DBAC0300DFCB2D /* AddressModel.swift */; };
+		6190364F26E08A7E00DFCB2D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190364E26E08A7E00DFCB2D /* MapViewController.swift */; };
+		6190365626E1F42200DFCB2D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 6190365526E1F42200DFCB2D /* .swiftlint.yml */; };
+		6190365E26F0821D00DFCB2D /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190365D26F0821D00DFCB2D /* MapPresenter.swift */; };
+		619D38A026CB8A77000BEB66 /* SearchAddressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D389F26CB8A77000BEB66 /* SearchAddressPresenter.swift */; };
+		61BA939926D8F7F300544ADF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BA939826D8F7F300544ADF /* APIResponse.swift */; };
 		FB540650C3F15E632FE251FE /* Pods_Address_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,16 +29,19 @@
 		61306DB426B0188200982447 /* Address-Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Address-Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		61306DB726B0188200982447 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61306DB926B0188200982447 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		61306DBB26B0188200982447 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		61306DBB26B0188200982447 /* SearchAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
 		61306DBE26B0188200982447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		61306DC026B0188400982447 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61306DC326B0188400982447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61306DC526B0188400982447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61306DCD26B26CA600982447 /* AddressTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableCell.swift; sourceTree = "<group>"; };
-		61306DCF26B2743400982447 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		618C734526B6B60F00A0F81B /* Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documents.swift; sourceTree = "<group>"; };
-		618C734826B6B63000A0F81B /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
-		618C734A26B6B64800A0F81B /* RoadAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadAddress.swift; sourceTree = "<group>"; };
+		6190364C26DBAC0300DFCB2D /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
+		6190364E26E08A7E00DFCB2D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		6190365526E1F42200DFCB2D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		6190365D26F0821D00DFCB2D /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		619D389F26CB8A77000BEB66 /* SearchAddressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressPresenter.swift; sourceTree = "<group>"; };
+		61BA939826D8F7F300544ADF /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		CE279F63598100A3D02601A5 /* Pods-Address-Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Address-Finder.debug.xcconfig"; path = "Target Support Files/Pods-Address-Finder/Pods-Address-Finder.debug.xcconfig"; sourceTree = "<group>"; };
 		DBF50C3F75068B814E05CB64 /* Pods_Address_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Address_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -55,6 +61,7 @@
 		61306DAB26B0188200982447 = {
 			isa = PBXGroup;
 			children = (
+				6190365526E1F42200DFCB2D /* .swiftlint.yml */,
 				61306DB626B0188200982447 /* Address-Finder */,
 				61306DB526B0188200982447 /* Products */,
 				8B889FCF667CDDF310F98A45 /* Pods */,
@@ -73,28 +80,54 @@
 		61306DB626B0188200982447 /* Address-Finder */ = {
 			isa = PBXGroup;
 			children = (
-				618C734726B6B61500A0F81B /* Structs */,
+				619D389C26CB871D000BEB66 /* Views */,
+				619D389826CB52BF000BEB66 /* Presenters */,
+				618C734726B6B61500A0F81B /* Entity */,
 				61306DB726B0188200982447 /* AppDelegate.swift */,
 				61306DB926B0188200982447 /* SceneDelegate.swift */,
-				61306DBB26B0188200982447 /* ViewController.swift */,
 				61306DBD26B0188200982447 /* Main.storyboard */,
 				61306DC026B0188400982447 /* Assets.xcassets */,
 				61306DC226B0188400982447 /* LaunchScreen.storyboard */,
 				61306DC526B0188400982447 /* Info.plist */,
-				61306DCD26B26CA600982447 /* AddressTableCell.swift */,
 			);
 			path = "Address-Finder";
 			sourceTree = "<group>";
 		};
-		618C734726B6B61500A0F81B /* Structs */ = {
+		616B6E1026D9D10F00652A72 /* Address */ = {
 			isa = PBXGroup;
 			children = (
 				618C734526B6B60F00A0F81B /* Documents.swift */,
-				618C734826B6B63000A0F81B /* APIResponse.swift */,
-				61306DCF26B2743400982447 /* Address.swift */,
-				618C734A26B6B64800A0F81B /* RoadAddress.swift */,
+				61BA939826D8F7F300544ADF /* APIResponse.swift */,
 			);
-			path = Structs;
+			path = Address;
+			sourceTree = "<group>";
+		};
+		618C734726B6B61500A0F81B /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				6190364C26DBAC0300DFCB2D /* AddressModel.swift */,
+				616B6E1026D9D10F00652A72 /* Address */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		619D389826CB52BF000BEB66 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				619D389F26CB8A77000BEB66 /* SearchAddressPresenter.swift */,
+				6190365D26F0821D00DFCB2D /* MapPresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		619D389C26CB871D000BEB66 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				61306DBB26B0188200982447 /* SearchAddressViewController.swift */,
+				61306DCD26B26CA600982447 /* AddressTableCell.swift */,
+				6190364E26E08A7E00DFCB2D /* MapViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8B889FCF667CDDF310F98A45 /* Pods */ = {
@@ -122,6 +155,7 @@
 			buildConfigurationList = 61306DC826B0188400982447 /* Build configuration list for PBXNativeTarget "Address-Finder" */;
 			buildPhases = (
 				370A8293E5DCE252ED80BAF4 /* [CP] Check Pods Manifest.lock */,
+				6190365026E0F20600DFCB2D /* ShellScript */,
 				61306DB026B0188200982447 /* Sources */,
 				61306DB126B0188200982447 /* Frameworks */,
 				61306DB226B0188200982447 /* Resources */,
@@ -173,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6190365626E1F42200DFCB2D /* .swiftlint.yml in Resources */,
 				61306DC426B0188400982447 /* LaunchScreen.storyboard in Resources */,
 				61306DC126B0188400982447 /* Assets.xcassets in Resources */,
 				61306DBF26B0188200982447 /* Main.storyboard in Resources */,
@@ -221,6 +256,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Address-Finder/Pods-Address-Finder-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6190365026E0F20600DFCB2D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -228,14 +280,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				618C734B26B6B64800A0F81B /* RoadAddress.swift in Sources */,
-				618C734926B6B63000A0F81B /* APIResponse.swift in Sources */,
 				61306DCE26B26CA600982447 /* AddressTableCell.swift in Sources */,
-				61306DBC26B0188200982447 /* ViewController.swift in Sources */,
+				61306DBC26B0188200982447 /* SearchAddressViewController.swift in Sources */,
 				61306DB826B0188200982447 /* AppDelegate.swift in Sources */,
-				61306DD026B2743400982447 /* Address.swift in Sources */,
+				6190364F26E08A7E00DFCB2D /* MapViewController.swift in Sources */,
+				619D38A026CB8A77000BEB66 /* SearchAddressPresenter.swift in Sources */,
+				6190364D26DBAC0300DFCB2D /* AddressModel.swift in Sources */,
 				618C734626B6B60F00A0F81B /* Documents.swift in Sources */,
+				6190365E26F0821D00DFCB2D /* MapPresenter.swift in Sources */,
 				61306DBA26B0188200982447 /* SceneDelegate.swift in Sources */,
+				61BA939926D8F7F300544ADF /* APIResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
